@@ -8,7 +8,7 @@ Completed
 
 ## Increment
 
-**Increment 1 - Project Foundation**
+**Increment 2 - Quiz Session**
 
 Referencia:
 
@@ -18,9 +18,9 @@ Referencia:
 
 ## Objective
 
-Implementar el primer incremento del proyecto siguiendo estrictamente todas las especificaciones definidas.
+Implementar el flujo principal de una sesión de práctica.
 
-El objetivo de este incremento es obtener una primera versión funcional capaz de cargar un banco de preguntas y mostrar una pregunta al usuario.
+El objetivo de este incremento es permitir al usuario navegar a través de todas las preguntas del banco de datos, una a la vez, en orden aleatorio y sin repeticiones.
 
 ---
 
@@ -28,14 +28,12 @@ El objetivo de este incremento es obtener una primera versión funcional capaz d
 
 Este incremento incluye únicamente:
 
-- Crear la estructura inicial del proyecto.
-- Implementar la página principal (pantalla de bienvenida con botón "Comenzar").
-- Crear la estructura base de estilos.
-- Crear la estructura base de JavaScript (módulos vacíos con nombres definidos).
-- Implementar la carga y validación del banco de preguntas.
-- Mostrar una pregunta estática sin navegación.
-- Mostrar imágenes cuando la pregunta las posea.
-- Mostrar correctamente preguntas que no tengan imagen.
+- Iniciar una sesión al hacer clic en "Comenzar".
+- Aleatorizar el orden de las preguntas al iniciar la sesión.
+- Mostrar una pregunta a la vez.
+- Implementar navegación entre preguntas mediante botón "Siguiente".
+- Evitar que una pregunta se repita durante la misma sesión.
+- Finalizar la sesión cuando se hayan mostrado todas las preguntas.
 
 ---
 
@@ -43,14 +41,20 @@ Este incremento incluye únicamente:
 
 Las siguientes funcionalidades NO deberán implementarse durante este incremento:
 
-- Aleatorización de preguntas.
-- Aleatorización de opciones.
-- Validación de respuestas.
-- Gestión de sesiones.
-- Navegación entre preguntas.
-- Estadísticas.
+- Validación de respuestas (correcto/incorrecto).
+- Botón "Responder".
+- Validación inmediata de respuestas.
+- Mostrar mensajes de Correcto/Incorrecto.
+- Bloquear la respuesta del usuario.
+- Aleatorización de opciones de respuesta.
+- Estadísticas de la sesión.
+- Barra de progreso funcional (solo visual).
+- Contador de preguntas funcional (solo visual).
 - Resultados finales.
-- Repetición de preguntas incorrectas.
+- Cálculo de porcentaje de aciertos.
+- Reiniciar sesión.
+- Diseño responsive.
+- Mejoras visuales.
 - Cualquier funcionalidad descrita en `specs/008-future-enhancements.md`.
 
 Si durante la implementación surge la necesidad de incorporar alguna funcionalidad fuera del alcance definido, el desarrollo deberá detenerse y solicitar aprobación antes de continuar.
@@ -97,12 +101,13 @@ Antes de tomar cualquier decisión de implementación, el agente deberá:
 
 El incremento se considerará completado cuando:
 
-- El proyecto pueda ejecutarse correctamente.
-- El banco de preguntas se cargue sin errores.
-- Se muestre correctamente una pregunta.
-- Las preguntas con imagen se visualicen correctamente.
-- Las preguntas sin imagen se visualicen correctamente.
-- Se cumplan todos los criterios definidos para el Incremento 1 en `011-development-roadmap.md`.
+- Al hacer clic en "Comenzar" se inicie una nueva sesión.
+- Las preguntas se muestren en orden aleatorio.
+- Cada pregunta aparezca exactamente una vez por sesión.
+- El orden de las preguntas cambie entre sesiones diferentes.
+- La navegación con el botón "Siguiente" funcione correctamente.
+- La sesión finalice automáticamente al terminar todas las preguntas.
+- Se cumplan todos los criterios definidos para el Incremento 2 en `011-development-roadmap.md`.
 
 ---
 
@@ -110,12 +115,11 @@ El incremento se considerará completado cuando:
 
 Al finalizar este incremento deberán existir, como mínimo:
 
-- Estructura inicial del proyecto.
-- Pantalla de bienvenida funcional con botón "Comenzar".
-- Hoja de estilos base.
-- Módulos base de JavaScript (estructura inicial).
-- Mecanismo de carga y validación del banco de preguntas.
-- Renderizado funcional de una pregunta estática.
+- Funcionalidad de aleatorización de preguntas.
+- Navegación entre preguntas mediante botón "Siguiente".
+- Mecanismo para evitar preguntas repetidas.
+- Detección de fin de sesión.
+- Transición automática a fin de sesión.
 
 ---
 
@@ -140,8 +144,11 @@ Al finalizar este incremento, el proyecto deberá encontrarse en un estado funci
 
 - Abrir la aplicación desde un navegador.
 - Visualizar la pantalla de bienvenida con el botón "Comenzar".
-- Cargar y validar un banco de preguntas.
-- Mostrar correctamente una pregunta estática con o sin imagen.
+- Hacer clic en "Comenzar" para iniciar una sesión.
+- Navegar entre preguntas usando el botón "Siguiente".
+- Verificar que las preguntas aparecen en orden aleatorio.
+- Verificar que no se repiten preguntas durante la sesión.
+- Verificar que la sesión finaliza al terminar todas las preguntas.
 
 No deberá existir ninguna funcionalidad adicional perteneciente a incrementos posteriores.
 
@@ -152,7 +159,7 @@ No deberá existir ninguna funcionalidad adicional perteneciente a incrementos p
 Una vez completado este incremento:
 
 - Detener inmediatamente el desarrollo.
-- No iniciar el Incremento 2.
+- No iniciar el Incremento 3.
 - Esperar la revisión y aprobación del usuario antes de continuar.
 
 ---

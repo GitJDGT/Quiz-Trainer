@@ -7,6 +7,8 @@ var App = {
 
     bindEvents() {
         UI.onStart(function() { App.startQuiz(); });
+        UI.onNext(function() { App.nextQuestion(); });
+        UI.onRestart(function() { App.restartQuiz(); });
         UI.onRetry(function() { App.startQuiz(); });
     },
 
@@ -26,6 +28,29 @@ var App = {
         }
 
         UI.showQuestion(question, QuizEngine.getCurrentQuestionNumber(), QuizEngine.getTotalQuestions());
+    },
+
+    nextQuestion() {
+        var moved = QuizEngine.moveToNextQuestion();
+
+        if (!moved) {
+            UI.showResults();
+            return;
+        }
+
+        var question = QuizEngine.getCurrentQuestion();
+
+        if (!question) {
+            UI.showResults();
+            return;
+        }
+
+        UI.showQuestion(question, QuizEngine.getCurrentQuestionNumber(), QuizEngine.getTotalQuestions());
+    },
+
+    restartQuiz() {
+        QuizEngine.reset();
+        UI.showScreen('welcome');
     }
 };
 

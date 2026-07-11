@@ -156,7 +156,7 @@ body {
     border: 2px solid #0f3460;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.1s ease, border-color 0.1s ease;
 }
 
 .option:hover {
@@ -182,6 +182,35 @@ body {
     flex: 1;
     font-size: 1rem;
     color: #e0e0e0;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.results-content {
+    text-align: center;
+    background: #16213e;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid #0f3460;
+}
+
+.results-content h2 {
+    font-size: 1.8rem;
+    color: #e94560;
+    margin-bottom: 16px;
+}
+
+.results-content p {
+    font-size: 1.1rem;
+    color: #a0a0b0;
+    margin-bottom: 24px;
 }
 
 .error-content {
@@ -214,6 +243,7 @@ body {
 
     .welcome-content,
     .question-container,
+    .results-content,
     .error-content {
         padding: 24px;
     }

@@ -14,7 +14,6 @@ var QuestionsData = [
     {
         "id": "q2",
         "statement": "¿Cuántos lados tiene un triángulo?",
-        "image": "triangle.png",
         "options": [
             { "id": "a", "text": "2" },
             { "id": "b", "text": "3" },
@@ -59,5 +58,65 @@ var QuestionsData = [
         ],
         "correctAnswer": "c",
         "category": "Geografía"
+    },
+    {
+        "id": "q6",
+        "statement": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+        "options": [
+            { "id": "a", "text": "186" },
+            { "id": "b", "text": "206" },
+            { "id": "c", "text": "256" },
+            { "id": "d", "text": "306" }
+        ],
+        "correctAnswer": "b",
+        "category": "Ciencias"
+    },
+    {
+        "id": "q7",
+        "statement": "¿Quién pintó la Mona Lisa?",
+        "options": [
+            { "id": "a", "text": "Miguel Ángel" },
+            { "id": "b", "text": "Rafael" },
+            { "id": "c", "text": "Leonardo da Vinci" },
+            { "id": "d", "text": "Donatello" }
+        ],
+        "correctAnswer": "c",
+        "category": "Arte"
+    },
+    {
+        "id": "q8",
+        "statement": "¿Cuál es el elemento químico más abundante en el universo?",
+        "options": [
+            { "id": "a", "text": "Oxígeno" },
+            { "id": "b", "text": "Carbono" },
+            { "id": "c", "text": "Hidrógeno" },
+            { "id": "d", "text": "Helio" }
+        ],
+        "correctAnswer": "c",
+        "category": "Ciencias"
+    },
+    {
+        "id": "q9",
+        "statement": "¿En qué continente se encuentra Egipto?",
+        "options": [
+            { "id": "a", "text": "Asia" },
+            { "id": "b", "text": "África" },
+            { "id": "c", "text": "Europa" },
+            { "id": "d", "text": "América" }
+        ],
+        "correctAnswer": "b",
+        "category": "Geografía"
+    },
+    {
+        "id": "q10",
+        "statement": "¿Cuál es el animal terrestre más rápido?",
+        "options": [
+            { "id": "a", "text": "León" },
+            { "id": "b", "text": "Guepardo" },
+            { "id": "c", "text": "Gacela" },
+            { "id": "d", "text": "Caballo" }
+        ],
+        "correctAnswer": "b",
+        "category": "Ciencias"
     }
 ];

@@ -15,6 +15,18 @@ var QuizEngine = {
         return SessionManager.getCurrentQuestion();
     },
 
+    hasNextQuestion() {
+        return SessionManager.hasNextQuestion();
+    },
+
+    moveToNextQuestion() {
+        return SessionManager.moveToNextQuestion();
+    },
+
+    isSessionComplete() {
+        return SessionManager.isSessionComplete();
+    },
+
     getTotalQuestions() {
         return SessionManager.getTotalQuestions();
     },

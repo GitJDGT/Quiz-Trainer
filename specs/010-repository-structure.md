@@ -30,15 +30,12 @@ El repositorio deberá organizarse de la siguiente manera:
 
 Contendrá todos los recursos visuales utilizados por la aplicación.
 
-Los recursos deberán organizarse por banco de preguntas para facilitar la administración de múltiples cuestionarios.
-
-Propuesta inicial:
+Estructura para el MVP (banco de preguntas único):
 
 ```text
 assets/
 └── question-banks/
-    └── driving-test/
-        └── images/
+    └── images/
 ```
 
 En futuras versiones podrán coexistir múltiples bancos:
@@ -58,18 +55,16 @@ assets/
 
 # data/
 
-Contendrá los bancos de preguntas utilizados por el Quiz Engine.
+Contendrá el banco de preguntas utilizado por el Quiz Engine.
 
-Cada banco de preguntas deberá mantenerse independiente.
-
-Propuesta inicial:
+Estructura para el MVP (banco de preguntas único):
 
 ```text
 data/
-└── driving-test.json
+└── questions.json
 ```
 
-En futuras versiones:
+En futuras versiones podrán coexistir múltiples bancos:
 
 ```text
 data/

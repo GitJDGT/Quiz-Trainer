@@ -22,6 +22,24 @@ La interfaz deberá adaptarse correctamente tanto a equipos de escritorio como a
 
 ---
 
+# Welcome Screen
+
+### UI-018 - Welcome Message
+
+La pantalla de bienvenida deberá mostrar un mensaje que invite al usuario a iniciar la sesión.
+
+Ejemplo: "¿Listo para el siguiente quiz?"
+
+---
+
+### UI-019 - Start Button
+
+La pantalla de bienvenida deberá incluir un botón "Comenzar" que inicie la sesión de práctica.
+
+El botón deberá ser el elemento principal y estar claramente visible.
+
+---
+
 # Question Area
 
 ### UI-004 - Question Statement
@@ -103,6 +121,8 @@ Después de validar una respuesta, la opción seleccionada por el usuario deber�
 
 La interfaz deberá mostrar el número de la pregunta actual y el total de preguntas de la sesión.
 
+El contador se mostrará al presentar cada pregunta, antes de que el usuario responda.
+
 Ejemplo:
 
 Pregunta 15 de 210
@@ -132,4 +152,6 @@ Al finalizar la sesión deberán mostrarse como mínimo:
 
 ### UI-017 - Restart Session
 
-Desde la pantalla de resultados el usuario podrá iniciar una nueva sesión de práctica.
+Desde la pantalla de resultados el usuario podrá iniciar una nueva sesión de práctica mediante un botón "Volver a empezar".
+
+Al hacer clic, el sistema regresará a la pantalla de bienvenida.

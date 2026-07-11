@@ -8,7 +8,7 @@ Completed
 
 ## Increment
 
-**Increment 3 - Answer Validation**
+**Increment 4 - Progress Tracking**
 
 Referencia:
 
@@ -18,9 +18,9 @@ Referencia:
 
 ## Objective
 
-Implementar la interacción del usuario con las preguntas.
+Incorporar el seguimiento de la sesión.
 
-El objetivo de este incremento es permitir al usuario seleccionar una respuesta, validarla inmediatamente y recibir retroalimentación (Correcto/Incorrecto) sin revelar la respuesta correcta.
+El objetivo de este incremento es proporcionar al usuario información visual sobre su progreso durante la sesión, incluyendo un contador de preguntas, una barra de progreso funcional y un registro de respuestas correctas/incorrectas.
 
 ---
 
@@ -28,14 +28,11 @@ El objetivo de este incremento es permitir al usuario seleccionar una respuesta,
 
 Este incremento incluye únicamente:
 
-- Implementar selección de respuesta mediante radio buttons.
-- Agregar botón "Responder" que se habilita solo cuando se selecciona una opción.
-- Implementar validación inmediata de la respuesta seleccionada.
-- Mostrar mensaje "Correcto" o "Incorrecto" después de validar.
-- Bloquear la selección del usuario después de validar.
-- Deshabilitar el botón "Responder" después de validar.
-- Habilitar el botón "Siguiente" solo después de validar la respuesta.
-- Bloquear la opción seleccionada para que permanezca visible.
+- Implementar contador de preguntas funcional (ej: "Pregunta 3 de 10").
+- Implementar barra de progreso que se actualice al avanzar entre preguntas.
+- Registrar respuestas del usuario (correctas/incorrectas).
+- Mostrar estadísticas básicas de la sesión durante el progreso.
+- Actualizar el contador y la barra de progreso en tiempo real.
 
 ---
 
@@ -43,12 +40,11 @@ Este incremento incluye únicamente:
 
 Las siguientes funcionalidades NO deberán implementarse durante este incremento:
 
-- Estadísticas de la sesión.
-- Barra de progreso funcional (solo visual).
-- Contador de preguntas funcional (solo visual).
-- Resultados finales.
+- Resultados finales de la sesión.
 - Cálculo de porcentaje de aciertos.
 - Reiniciar sesión.
+- Pantalla de resultados.
+- Botón "Volver a empezar".
 - Diseño responsive.
 - Mejoras visuales.
 - Cualquier funcionalidad descrita en `specs/008-future-enhancements.md`.
@@ -97,17 +93,12 @@ Antes de tomar cualquier decisión de implementación, el agente deberá:
 
 El incremento se considerará completado cuando:
 
-- El usuario pueda seleccionar una opción de respuesta.
-- El botón "Responder" se deshabilite hasta seleccionar una opción.
-- Al hacer clic en "Responder" se valide la respuesta inmediatamente.
-- Se muestre "Correcto" si la respuesta es correcta.
-- Se muestre "Incorrecto" si la respuesta es incorrecta.
-- No se revele cuál era la respuesta correcta.
-- La selección del usuario quede bloqueada después de validar.
-- El botón "Responder" se deshabilite después de validar.
-- El botón "Siguiente" se habilite solo después de validar.
-- No sea posible responder dos veces la misma pregunta.
-- Se cumplan todos los criterios definidos para el Incremento 3 en `011-development-roadmap.md`.
+- El contador de preguntas muestre correctamente el número de la pregunta actual y el total.
+- La barra de progreso se actualice automáticamente al avanzar entre preguntas.
+- El registro de respuestas refleje correctamente las respuestas correctas e incorrectas.
+- Las estadísticas se actualicen en tiempo real durante la sesión.
+- El progreso visual sea claro y consistente.
+- Se cumplan todos los criterios definidos para el Incremento 4 en `011-development-roadmap.md`.
 
 ---
 
@@ -115,11 +106,10 @@ El incremento se considerará completado cuando:
 
 Al finalizar este incremento deberán existir, como mínimo:
 
-- Botón "Responder" funcional.
-- Mecanismo de validación de respuestas.
-- Mensajes de retroalimentación (Correcto/Incorrecto).
-- Bloqueo de selección después de validar.
-- Control de estado de botones (Responder/Siguiente).
+- Contador de preguntas funcional.
+- Barra de progreso funcional.
+- Registro de respuestas (correctas/incorrectas).
+- Estadísticas de sesión en tiempo real.
 
 ---
 
@@ -144,12 +134,10 @@ Al finalizar este incremento, el proyecto deberá encontrarse en un estado funci
 
 - Abrir la aplicación desde un navegador.
 - Iniciar una sesión y navegar entre preguntas.
-- Seleccionar una opción de respuesta.
-- Hacer clic en "Responder" para validar la respuesta.
-- Ver el mensaje "Correcto" o "Incorrecto".
-- Verificar que la selección queda bloqueada después de validar.
-- Verificar que el botón "Siguiente" solo se habilita después de validar.
-- Verificar que no se puede responder dos veces la misma pregunta.
+- Ver el contador de preguntas actualizarse (ej: "Pregunta 3 de 10").
+- Ver la barra de progreso avanzar al responder preguntas.
+- Ver un registro de respuestas correctas e incorrectas.
+- Ver estadísticas básicas de la sesión.
 
 No deberá existir ninguna funcionalidad adicional perteneciente a incrementos posteriores.
 
@@ -160,7 +148,7 @@ No deberá existir ninguna funcionalidad adicional perteneciente a incrementos p
 Una vez completado este incremento:
 
 - Detener inmediatamente el desarrollo.
-- No iniciar el Incremento 4.
+- No iniciar el Incremento 5.
 - Esperar la revisión y aprobación del usuario antes de continuar.
 
 ---

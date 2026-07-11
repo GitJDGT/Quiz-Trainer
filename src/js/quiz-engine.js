@@ -35,6 +35,26 @@ var QuizEngine = {
         return SessionManager.getCurrentQuestionNumber();
     },
 
+    recordAnswer(isCorrect) {
+        SessionManager.recordAnswer(isCorrect);
+    },
+
+    getCorrectAnswers() {
+        return SessionManager.getCorrectAnswers();
+    },
+
+    getIncorrectAnswers() {
+        return SessionManager.getIncorrectAnswers();
+    },
+
+    getAnsweredQuestions() {
+        return SessionManager.getAnsweredQuestions();
+    },
+
+    getProgressPercentage() {
+        return SessionManager.getProgressPercentage();
+    },
+
     reset() {
         SessionManager.reset();
     }

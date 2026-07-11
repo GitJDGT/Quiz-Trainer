@@ -15,6 +15,9 @@ var UI = {
         feedbackMessage: null,
         currentQuestion: null,
         totalQuestions: null,
+        correctCount: null,
+        incorrectCount: null,
+        progressPercentage: null,
         progressBarFill: null,
         errorMessage: null
     },
@@ -35,6 +38,9 @@ var UI = {
         this.elements.feedbackMessage = document.getElementById('feedback-message');
         this.elements.currentQuestion = document.getElementById('current-question');
         this.elements.totalQuestions = document.getElementById('total-questions');
+        this.elements.correctCount = document.getElementById('correct-count');
+        this.elements.incorrectCount = document.getElementById('incorrect-count');
+        this.elements.progressPercentage = document.getElementById('progress-percentage');
         this.elements.progressBarFill = document.querySelector('.progress-bar-fill');
         this.elements.errorMessage = document.getElementById('error-message');
     },
@@ -69,9 +75,6 @@ var UI = {
     showQuestion(question, questionNumber, totalQuestions) {
         this.elements.currentQuestion.textContent = questionNumber;
         this.elements.totalQuestions.textContent = totalQuestions;
-
-        var progressPercentage = ((questionNumber - 1) / totalQuestions) * 100;
-        this.elements.progressBarFill.style.width = progressPercentage + '%';
 
         this.elements.questionStatement.textContent = question.statement;
 
@@ -144,6 +147,13 @@ var UI = {
         this.elements.feedbackMessage.style.display = 'none';
         this.elements.feedbackMessage.textContent = '';
         this.elements.feedbackMessage.className = 'feedback-message';
+    },
+
+    updateStats(correct, incorrect, progress) {
+        this.elements.correctCount.textContent = correct;
+        this.elements.incorrectCount.textContent = incorrect;
+        this.elements.progressPercentage.textContent = progress + '%';
+        this.elements.progressBarFill.style.width = progress + '%';
     },
 
     disableOptions() {

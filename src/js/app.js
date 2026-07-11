@@ -32,6 +32,7 @@ var App = {
             return;
         }
 
+        this.updateStats();
         UI.showQuestion(question, QuizEngine.getCurrentQuestionNumber(), QuizEngine.getTotalQuestions());
     },
 
@@ -66,6 +67,9 @@ var App = {
 
         this.currentQuestionAnswered = true;
 
+        QuizEngine.recordAnswer(isCorrect);
+        this.updateStats();
+
         UI.disableOptions();
         UI.disableAnswerButton();
         UI.hideAnswerButton();
@@ -90,6 +94,13 @@ var App = {
         }
 
         UI.showQuestion(question, QuizEngine.getCurrentQuestionNumber(), QuizEngine.getTotalQuestions());
+    },
+
+    updateStats() {
+        var correct = QuizEngine.getCorrectAnswers();
+        var incorrect = QuizEngine.getIncorrectAnswers();
+        var progress = QuizEngine.getProgressPercentage();
+        UI.updateStats(correct, incorrect, progress);
     },
 
     restartQuiz() {

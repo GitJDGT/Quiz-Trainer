@@ -1,10 +1,14 @@
 var SessionManager = {
     currentQuestionIndex: 0,
     questions: [],
+    correctAnswers: 0,
+    incorrectAnswers: 0,
 
     init(questions) {
         this.questions = this.shuffleQuestions(questions);
         this.currentQuestionIndex = 0;
+        this.correctAnswers = 0;
+        this.incorrectAnswers = 0;
     },
 
     shuffleQuestions(questions) {
@@ -49,8 +53,37 @@ var SessionManager = {
         return this.currentQuestionIndex + 1;
     },
 
+    recordAnswer(isCorrect) {
+        if (isCorrect) {
+            this.correctAnswers++;
+        } else {
+            this.incorrectAnswers++;
+        }
+    },
+
+    getCorrectAnswers() {
+        return this.correctAnswers;
+    },
+
+    getIncorrectAnswers() {
+        return this.incorrectAnswers;
+    },
+
+    getAnsweredQuestions() {
+        return this.correctAnswers + this.incorrectAnswers;
+    },
+
+    getProgressPercentage() {
+        if (this.questions.length === 0) {
+            return 0;
+        }
+        return Math.round((this.getAnsweredQuestions() / this.questions.length) * 100);
+    },
+
     reset() {
         this.currentQuestionIndex = 0;
         this.questions = [];
+        this.correctAnswers = 0;
+        this.incorrectAnswers = 0;
     }
 };

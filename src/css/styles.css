@@ -110,7 +110,47 @@ body {
     text-align: center;
     font-size: 0.9rem;
     color: #a0a0b0;
+    margin-bottom: 16px;
+}
+
+.session-stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
     margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #16213e;
+    border-radius: 8px;
+    border: 1px solid #0f3460;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #a0a0b0;
+}
+
+.stat-value {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.stat-correct .stat-value {
+    color: #52b788;
+}
+
+.stat-incorrect .stat-value {
+    color: #e94560;
+}
+
+.stat-progress .stat-value {
+    color: #3498db;
 }
 
 .question-container {
@@ -276,5 +316,13 @@ body {
 
     .question-statement {
         font-size: 1.1rem;
+    }
+
+    .session-stats {
+        gap: 12px;
+    }
+
+    .stat-item {
+        padding: 6px 12px;
     }
 }

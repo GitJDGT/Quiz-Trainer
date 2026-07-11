@@ -2,13 +2,13 @@
 
 ## Status
 
-Completed
+Pending Review
 
 ---
 
 ## Increment
 
-**Increment 4 - Progress Tracking**
+**Increment 5 - Results**
 
 Referencia:
 
@@ -18,9 +18,9 @@ Referencia:
 
 ## Objective
 
-Incorporar el seguimiento de la sesión.
+Finalizar el ciclo completo de una sesión.
 
-El objetivo de este incremento es proporcionar al usuario información visual sobre su progreso durante la sesión, incluyendo un contador de preguntas, una barra de progreso funcional y un registro de respuestas correctas/incorrectas.
+El objetivo de este incremento es mostrar los resultados finales al completar una sesión, incluyendo estadísticas detalladas y permitir al usuario iniciar una nueva sesión.
 
 ---
 
@@ -28,11 +28,12 @@ El objetivo de este incremento es proporcionar al usuario información visual so
 
 Este incremento incluye únicamente:
 
-- Implementar contador de preguntas funcional (ej: "Pregunta 3 de 10").
-- Implementar barra de progreso que se actualice al avanzar entre preguntas.
-- Registrar respuestas del usuario (correctas/incorrectas).
-- Mostrar estadísticas básicas de la sesión durante el progreso.
-- Actualizar el contador y la barra de progreso en tiempo real.
+- Mostrar pantalla de resultados al finalizar la sesión.
+- Calcular y mostrar porcentaje de aciertos.
+- Mostrar estadísticas finales (total, correctas, incorrectas, porcentaje).
+- Implementar botón "Volver a empezar" en la pantalla de resultados.
+- Regresar a la pantalla de bienvenida al hacer clic en "Volver a empezar".
+- Reiniciar completamente el estado de la sesión al iniciar una nueva.
 
 ---
 
@@ -40,13 +41,8 @@ Este incremento incluye únicamente:
 
 Las siguientes funcionalidades NO deberán implementarse durante este incremento:
 
-- Resultados finales de la sesión.
-- Cálculo de porcentaje de aciertos.
-- Reiniciar sesión.
-- Pantalla de resultados.
-- Botón "Volver a empezar".
 - Diseño responsive.
-- Mejoras visuales.
+- Mejoras visuales adicionales.
 - Cualquier funcionalidad descrita en `specs/008-future-enhancements.md`.
 
 Si durante la implementación surge la necesidad de incorporar alguna funcionalidad fuera del alcance definido, el desarrollo deberá detenerse y solicitar aprobación antes de continuar.
@@ -93,12 +89,16 @@ Antes de tomar cualquier decisión de implementación, el agente deberá:
 
 El incremento se considerará completado cuando:
 
-- El contador de preguntas muestre correctamente el número de la pregunta actual y el total.
-- La barra de progreso se actualice automáticamente al avanzar entre preguntas.
-- El registro de respuestas refleje correctamente las respuestas correctas e incorrectas.
-- Las estadísticas se actualicen en tiempo real durante la sesión.
-- El progreso visual sea claro y consistente.
-- Se cumplan todos los criterios definidos para el Incremento 4 en `011-development-roadmap.md`.
+- Al finalizar la sesión se muestre la pantalla de resultados.
+- La pantalla de resultados muestre el total de preguntas.
+- La pantalla de resultados muestre las respuestas correctas.
+- La pantalla de resultados muestre las respuestas incorrectas.
+- La pantalla de resultados muestre el porcentaje de aciertos.
+- El botón "Volver a empezar" esté visible y funcional.
+- Al hacer clic en "Volver a empezar" se regrese a la pantalla de bienvenida.
+- Al iniciar una nueva sesión, el estado se reinicie completamente.
+- Las estadísticas finales sean correctas.
+- Se cumplan todos los criterios definidos para el Incremento 5 en `011-development-roadmap.md`.
 
 ---
 
@@ -106,10 +106,11 @@ El incremento se considerará completado cuando:
 
 Al finalizar este incremento deberán existir, como mínimo:
 
-- Contador de preguntas funcional.
-- Barra de progreso funcional.
-- Registro de respuestas (correctas/incorrectas).
-- Estadísticas de sesión en tiempo real.
+- Pantalla de resultados funcional.
+- Cálculo de porcentaje de aciertos.
+- Estadísticas finales detalladas.
+- Botón "Volver a empezar" funcional.
+- Mecanismo de reinicio de sesión.
 
 ---
 
@@ -133,13 +134,13 @@ Antes de marcar la tarea como finalizada, deberá verificarse que:
 Al finalizar este incremento, el proyecto deberá encontrarse en un estado funcional que permita:
 
 - Abrir la aplicación desde un navegador.
-- Iniciar una sesión y navegar entre preguntas.
-- Ver el contador de preguntas actualizarse (ej: "Pregunta 3 de 10").
-- Ver la barra de progreso avanzar al responder preguntas.
-- Ver un registro de respuestas correctas e incorrectas.
-- Ver estadísticas básicas de la sesión.
+- Iniciar una sesión y completarla completamente.
+- Ver la pantalla de resultados con estadísticas detalladas.
+- Verificar que el porcentaje de aciertos es correcto.
+- Hacer clic en "Volver a empezar" y regresar a la pantalla de bienvenida.
+- Iniciar una nueva sesión con estado completamente reiniciado.
 
-No deberá existir ninguna funcionalidad adicional perteneciente a incrementos posteriores.
+Este incremento marca el primer MVP completamente funcional.
 
 ---
 
@@ -148,7 +149,7 @@ No deberá existir ninguna funcionalidad adicional perteneciente a incrementos p
 Una vez completado este incremento:
 
 - Detener inmediatamente el desarrollo.
-- No iniciar el Incremento 5.
+- No iniciar el Incremento 6.
 - Esperar la revisión y aprobación del usuario antes de continuar.
 
 ---

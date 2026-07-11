@@ -52,7 +52,24 @@
         <section id="results-screen" class="screen">
             <div class="results-content">
                 <h2>Sesión Completada</h2>
-                <p>Has respondido todas las preguntas.</p>
+                <div class="final-stats">
+                    <div class="final-stat-item">
+                        <span class="final-stat-label">Total de preguntas:</span>
+                        <span id="final-total" class="final-stat-value">0</span>
+                    </div>
+                    <div class="final-stat-item">
+                        <span class="final-stat-label">Respuestas correctas:</span>
+                        <span id="final-correct" class="final-stat-value stat-correct">0</span>
+                    </div>
+                    <div class="final-stat-item">
+                        <span class="final-stat-label">Respuestas incorrectas:</span>
+                        <span id="final-incorrect" class="final-stat-value stat-incorrect">0</span>
+                    </div>
+                    <div class="final-stat-item final-stat-percentage">
+                        <span class="final-stat-label">Porcentaje de aciertos:</span>
+                        <span id="final-percentage" class="final-stat-value">0%</span>
+                    </div>
+                </div>
                 <button id="restart-button" class="btn btn-primary">Volver a empezar</button>
             </div>
         </section>

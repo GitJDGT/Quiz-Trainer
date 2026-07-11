@@ -82,18 +82,26 @@ var App = {
         var moved = QuizEngine.moveToNextQuestion();
 
         if (!moved) {
-            UI.showResults();
+            this.showFinalResults();
             return;
         }
 
         var question = QuizEngine.getCurrentQuestion();
 
         if (!question) {
-            UI.showResults();
+            this.showFinalResults();
             return;
         }
 
         UI.showQuestion(question, QuizEngine.getCurrentQuestionNumber(), QuizEngine.getTotalQuestions());
+    },
+
+    showFinalResults() {
+        var total = QuizEngine.getTotalQuestions();
+        var correct = QuizEngine.getCorrectAnswers();
+        var incorrect = QuizEngine.getIncorrectAnswers();
+        var percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+        UI.showResults(total, correct, incorrect, percentage);
     },
 
     updateStats() {

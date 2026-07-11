@@ -19,6 +19,10 @@ var UI = {
         incorrectCount: null,
         progressPercentage: null,
         progressBarFill: null,
+        finalTotal: null,
+        finalCorrect: null,
+        finalIncorrect: null,
+        finalPercentage: null,
         errorMessage: null
     },
 
@@ -42,6 +46,10 @@ var UI = {
         this.elements.incorrectCount = document.getElementById('incorrect-count');
         this.elements.progressPercentage = document.getElementById('progress-percentage');
         this.elements.progressBarFill = document.querySelector('.progress-bar-fill');
+        this.elements.finalTotal = document.getElementById('final-total');
+        this.elements.finalCorrect = document.getElementById('final-correct');
+        this.elements.finalIncorrect = document.getElementById('final-incorrect');
+        this.elements.finalPercentage = document.getElementById('final-percentage');
         this.elements.errorMessage = document.getElementById('error-message');
     },
 
@@ -182,7 +190,11 @@ var UI = {
         });
     },
 
-    showResults() {
+    showResults(total, correct, incorrect, percentage) {
+        this.elements.finalTotal.textContent = total;
+        this.elements.finalCorrect.textContent = correct;
+        this.elements.finalIncorrect.textContent = incorrect;
+        this.elements.finalPercentage.textContent = percentage + '%';
         this.elements.progressBarFill.style.width = '100%';
         this.showScreen('results');
     },

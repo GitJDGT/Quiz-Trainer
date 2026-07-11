@@ -5,12 +5,14 @@ var UI = {
         resultsScreen: null,
         errorScreen: null,
         startButton: null,
+        answerButton: null,
         nextButton: null,
         restartButton: null,
         retryButton: null,
         questionImage: null,
         questionStatement: null,
         optionsContainer: null,
+        feedbackMessage: null,
         currentQuestion: null,
         totalQuestions: null,
         progressBarFill: null,
@@ -23,12 +25,14 @@ var UI = {
         this.elements.resultsScreen = document.getElementById('results-screen');
         this.elements.errorScreen = document.getElementById('error-screen');
         this.elements.startButton = document.getElementById('start-button');
+        this.elements.answerButton = document.getElementById('answer-button');
         this.elements.nextButton = document.getElementById('next-button');
         this.elements.restartButton = document.getElementById('restart-button');
         this.elements.retryButton = document.getElementById('retry-button');
         this.elements.questionImage = document.getElementById('question-image');
         this.elements.questionStatement = document.getElementById('question-statement');
         this.elements.optionsContainer = document.getElementById('options-container');
+        this.elements.feedbackMessage = document.getElementById('feedback-message');
         this.elements.currentQuestion = document.getElementById('current-question');
         this.elements.totalQuestions = document.getElementById('total-questions');
         this.elements.progressBarFill = document.querySelector('.progress-bar-fill');
@@ -80,7 +84,10 @@ var UI = {
         }
 
         this.renderOptions(question.options);
-        this.showNextButton();
+        this.hideFeedback();
+        this.enableAnswerButton();
+        this.hideAnswerButton();
+        this.hideNextButton();
         this.enableOptions();
 
         this.showScreen('question');
@@ -98,6 +105,27 @@ var UI = {
         }.bind(this));
     },
 
+    getSelectedOption() {
+        var selected = this.elements.optionsContainer.querySelector('input[name="answer"]:checked');
+        return selected ? selected.value : null;
+    },
+
+    showAnswerButton() {
+        this.elements.answerButton.style.display = 'inline-block';
+    },
+
+    hideAnswerButton() {
+        this.elements.answerButton.style.display = 'none';
+    },
+
+    enableAnswerButton() {
+        this.elements.answerButton.disabled = false;
+    },
+
+    disableAnswerButton() {
+        this.elements.answerButton.disabled = true;
+    },
+
     showNextButton() {
         this.elements.nextButton.style.display = 'inline-block';
     },
@@ -106,11 +134,22 @@ var UI = {
         this.elements.nextButton.style.display = 'none';
     },
 
+    showFeedback(isCorrect) {
+        this.elements.feedbackMessage.textContent = isCorrect ? 'Correcto' : 'Incorrecto';
+        this.elements.feedbackMessage.className = 'feedback-message ' + (isCorrect ? 'feedback-correct' : 'feedback-incorrect');
+        this.elements.feedbackMessage.style.display = 'block';
+    },
+
+    hideFeedback() {
+        this.elements.feedbackMessage.style.display = 'none';
+        this.elements.feedbackMessage.textContent = '';
+        this.elements.feedbackMessage.className = 'feedback-message';
+    },
+
     disableOptions() {
         var options = this.elements.optionsContainer.querySelectorAll('.option');
         options.forEach(function(option) {
             option.style.pointerEvents = 'none';
-            option.style.opacity = '0.7';
         });
     },
 
@@ -118,7 +157,18 @@ var UI = {
         var options = this.elements.optionsContainer.querySelectorAll('.option');
         options.forEach(function(option) {
             option.style.pointerEvents = 'auto';
-            option.style.opacity = '1';
+            option.classList.remove('selected');
+        });
+    },
+
+    highlightSelectedOption(optionId) {
+        var options = this.elements.optionsContainer.querySelectorAll('.option');
+        options.forEach(function(option) {
+            option.classList.remove('selected');
+            var radio = option.querySelector('input[type="radio"]');
+            if (radio && radio.value === optionId) {
+                option.classList.add('selected');
+            }
         });
     },
 
@@ -131,6 +181,10 @@ var UI = {
         this.elements.startButton.addEventListener('click', callback);
     },
 
+    onAnswer(callback) {
+        this.elements.answerButton.addEventListener('click', callback);
+    },
+
     onNext(callback) {
         this.elements.nextButton.addEventListener('click', callback);
     },
@@ -141,5 +195,13 @@ var UI = {
 
     onRetry(callback) {
         this.elements.retryButton.addEventListener('click', callback);
+    },
+
+    onOptionSelect(callback) {
+        this.elements.optionsContainer.addEventListener('change', function(event) {
+            if (event.target.name === 'answer') {
+                callback(event.target.value);
+            }
+        });
     }
 };

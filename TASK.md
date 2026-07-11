@@ -8,7 +8,7 @@ Completed
 
 ## Increment
 
-**Increment 2 - Quiz Session**
+**Increment 3 - Answer Validation**
 
 Referencia:
 
@@ -18,9 +18,9 @@ Referencia:
 
 ## Objective
 
-Implementar el flujo principal de una sesión de práctica.
+Implementar la interacción del usuario con las preguntas.
 
-El objetivo de este incremento es permitir al usuario navegar a través de todas las preguntas del banco de datos, una a la vez, en orden aleatorio y sin repeticiones.
+El objetivo de este incremento es permitir al usuario seleccionar una respuesta, validarla inmediatamente y recibir retroalimentación (Correcto/Incorrecto) sin revelar la respuesta correcta.
 
 ---
 
@@ -28,12 +28,14 @@ El objetivo de este incremento es permitir al usuario navegar a través de todas
 
 Este incremento incluye únicamente:
 
-- Iniciar una sesión al hacer clic en "Comenzar".
-- Aleatorizar el orden de las preguntas al iniciar la sesión.
-- Mostrar una pregunta a la vez.
-- Implementar navegación entre preguntas mediante botón "Siguiente".
-- Evitar que una pregunta se repita durante la misma sesión.
-- Finalizar la sesión cuando se hayan mostrado todas las preguntas.
+- Implementar selección de respuesta mediante radio buttons.
+- Agregar botón "Responder" que se habilita solo cuando se selecciona una opción.
+- Implementar validación inmediata de la respuesta seleccionada.
+- Mostrar mensaje "Correcto" o "Incorrecto" después de validar.
+- Bloquear la selección del usuario después de validar.
+- Deshabilitar el botón "Responder" después de validar.
+- Habilitar el botón "Siguiente" solo después de validar la respuesta.
+- Bloquear la opción seleccionada para que permanezca visible.
 
 ---
 
@@ -41,12 +43,6 @@ Este incremento incluye únicamente:
 
 Las siguientes funcionalidades NO deberán implementarse durante este incremento:
 
-- Validación de respuestas (correcto/incorrecto).
-- Botón "Responder".
-- Validación inmediata de respuestas.
-- Mostrar mensajes de Correcto/Incorrecto.
-- Bloquear la respuesta del usuario.
-- Aleatorización de opciones de respuesta.
 - Estadísticas de la sesión.
 - Barra de progreso funcional (solo visual).
 - Contador de preguntas funcional (solo visual).
@@ -101,13 +97,17 @@ Antes de tomar cualquier decisión de implementación, el agente deberá:
 
 El incremento se considerará completado cuando:
 
-- Al hacer clic en "Comenzar" se inicie una nueva sesión.
-- Las preguntas se muestren en orden aleatorio.
-- Cada pregunta aparezca exactamente una vez por sesión.
-- El orden de las preguntas cambie entre sesiones diferentes.
-- La navegación con el botón "Siguiente" funcione correctamente.
-- La sesión finalice automáticamente al terminar todas las preguntas.
-- Se cumplan todos los criterios definidos para el Incremento 2 en `011-development-roadmap.md`.
+- El usuario pueda seleccionar una opción de respuesta.
+- El botón "Responder" se deshabilite hasta seleccionar una opción.
+- Al hacer clic en "Responder" se valide la respuesta inmediatamente.
+- Se muestre "Correcto" si la respuesta es correcta.
+- Se muestre "Incorrecto" si la respuesta es incorrecta.
+- No se revele cuál era la respuesta correcta.
+- La selección del usuario quede bloqueada después de validar.
+- El botón "Responder" se deshabilite después de validar.
+- El botón "Siguiente" se habilite solo después de validar.
+- No sea posible responder dos veces la misma pregunta.
+- Se cumplan todos los criterios definidos para el Incremento 3 en `011-development-roadmap.md`.
 
 ---
 
@@ -115,11 +115,11 @@ El incremento se considerará completado cuando:
 
 Al finalizar este incremento deberán existir, como mínimo:
 
-- Funcionalidad de aleatorización de preguntas.
-- Navegación entre preguntas mediante botón "Siguiente".
-- Mecanismo para evitar preguntas repetidas.
-- Detección de fin de sesión.
-- Transición automática a fin de sesión.
+- Botón "Responder" funcional.
+- Mecanismo de validación de respuestas.
+- Mensajes de retroalimentación (Correcto/Incorrecto).
+- Bloqueo de selección después de validar.
+- Control de estado de botones (Responder/Siguiente).
 
 ---
 
@@ -143,12 +143,13 @@ Antes de marcar la tarea como finalizada, deberá verificarse que:
 Al finalizar este incremento, el proyecto deberá encontrarse en un estado funcional que permita:
 
 - Abrir la aplicación desde un navegador.
-- Visualizar la pantalla de bienvenida con el botón "Comenzar".
-- Hacer clic en "Comenzar" para iniciar una sesión.
-- Navegar entre preguntas usando el botón "Siguiente".
-- Verificar que las preguntas aparecen en orden aleatorio.
-- Verificar que no se repiten preguntas durante la sesión.
-- Verificar que la sesión finaliza al terminar todas las preguntas.
+- Iniciar una sesión y navegar entre preguntas.
+- Seleccionar una opción de respuesta.
+- Hacer clic en "Responder" para validar la respuesta.
+- Ver el mensaje "Correcto" o "Incorrecto".
+- Verificar que la selección queda bloqueada después de validar.
+- Verificar que el botón "Siguiente" solo se habilita después de validar.
+- Verificar que no se puede responder dos veces la misma pregunta.
 
 No deberá existir ninguna funcionalidad adicional perteneciente a incrementos posteriores.
 
@@ -159,7 +160,7 @@ No deberá existir ninguna funcionalidad adicional perteneciente a incrementos p
 Una vez completado este incremento:
 
 - Detener inmediatamente el desarrollo.
-- No iniciar el Incremento 3.
+- No iniciar el Incremento 4.
 - Esperar la revisión y aprobación del usuario antes de continuar.
 
 ---

@@ -1,4 +1,6 @@
 var App = {
+    currentQuestionAnswered: false,
+
     init() {
         UI.init();
         this.bindEvents();
@@ -7,12 +9,15 @@ var App = {
 
     bindEvents() {
         UI.onStart(function() { App.startQuiz(); });
+        UI.onAnswer(function() { App.submitAnswer(); });
         UI.onNext(function() { App.nextQuestion(); });
         UI.onRestart(function() { App.restartQuiz(); });
         UI.onRetry(function() { App.startQuiz(); });
+        UI.onOptionSelect(function(optionId) { App.onOptionSelected(optionId); });
     },
 
     startQuiz() {
+        this.currentQuestionAnswered = false;
         var result = QuizEngine.init();
 
         if (!result.success) {
@@ -30,7 +35,46 @@ var App = {
         UI.showQuestion(question, QuizEngine.getCurrentQuestionNumber(), QuizEngine.getTotalQuestions());
     },
 
+    onOptionSelected(optionId) {
+        if (this.currentQuestionAnswered) {
+            return;
+        }
+
+        UI.showAnswerButton();
+        UI.enableAnswerButton();
+        UI.highlightSelectedOption(optionId);
+    },
+
+    submitAnswer() {
+        if (this.currentQuestionAnswered) {
+            return;
+        }
+
+        var selectedOption = UI.getSelectedOption();
+
+        if (!selectedOption) {
+            return;
+        }
+
+        var question = QuizEngine.getCurrentQuestion();
+
+        if (!question) {
+            return;
+        }
+
+        var isCorrect = selectedOption === question.correctAnswer;
+
+        this.currentQuestionAnswered = true;
+
+        UI.disableOptions();
+        UI.disableAnswerButton();
+        UI.hideAnswerButton();
+        UI.showFeedback(isCorrect);
+        UI.showNextButton();
+    },
+
     nextQuestion() {
+        this.currentQuestionAnswered = false;
         var moved = QuizEngine.moveToNextQuestion();
 
         if (!moved) {
@@ -49,6 +93,7 @@ var App = {
     },
 
     restartQuiz() {
+        this.currentQuestionAnswered = false;
         QuizEngine.reset();
         UI.showScreen('welcome');
     }

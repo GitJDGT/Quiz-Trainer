@@ -3,56 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quiz Trainer - Aplicación para practicar preguntas de opción múltiple">
     <title>Quiz Trainer</title>
     <link rel="stylesheet" href="src/css/styles.css">
 </head>
 <body>
-    <main class="container">
-        <section id="welcome-screen" class="screen active">
+    <main class="container" role="main">
+        <section id="welcome-screen" class="screen active" aria-label="Pantalla de bienvenida">
             <div class="welcome-content">
                 <h1>Quiz Trainer</h1>
                 <p>¿Listo para el siguiente quiz?</p>
-                <button id="start-button" class="btn btn-primary">Comenzar</button>
+                <button id="start-button" class="btn btn-primary" aria-label="Iniciar nueva sesión de práctica">Comenzar</button>
             </div>
         </section>
 
-        <section id="question-screen" class="screen">
-            <div class="progress-bar">
+        <section id="question-screen" class="screen" aria-label="Pantalla de preguntas">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso de la sesión">
                 <div class="progress-bar-fill"></div>
             </div>
-            <div class="question-counter">
+            <div class="question-counter" aria-live="polite">
                 <span id="current-question">1</span> de <span id="total-questions">0</span>
             </div>
-            <div class="session-stats">
+            <div class="session-stats" aria-label="Estadísticas de la sesión">
                 <div class="stat-item stat-correct">
                     <span class="stat-label">Correctas:</span>
-                    <span id="correct-count" class="stat-value">0</span>
+                    <span id="correct-count" class="stat-value" aria-live="polite">0</span>
                 </div>
                 <div class="stat-item stat-incorrect">
                     <span class="stat-label">Incorrectas:</span>
-                    <span id="incorrect-count" class="stat-value">0</span>
+                    <span id="incorrect-count" class="stat-value" aria-live="polite">0</span>
                 </div>
                 <div class="stat-item stat-progress">
                     <span class="stat-label">Progreso:</span>
-                    <span id="progress-percentage" class="stat-value">0%</span>
+                    <span id="progress-percentage" class="stat-value" aria-live="polite">0%</span>
                 </div>
             </div>
             <div class="question-container">
-                <div id="question-image" class="question-image"></div>
+                <div id="question-image" class="question-image" aria-hidden="true"></div>
                 <h2 id="question-statement" class="question-statement"></h2>
-                <div id="options-container" class="options-container"></div>
-                <div id="feedback-message" class="feedback-message" style="display: none;"></div>
+                <div id="options-container" class="options-container" role="radiogroup" aria-label="Opciones de respuesta"></div>
+                <div id="feedback-message" class="feedback-message" style="display: none;" aria-live="assertive" role="alert"></div>
                 <div class="action-buttons">
-                    <button id="answer-button" class="btn btn-primary" disabled>Responder</button>
-                    <button id="next-button" class="btn btn-primary" style="display: none;">Siguiente</button>
+                    <button id="answer-button" class="btn btn-primary" disabled aria-label="Enviar respuesta seleccionada">Responder</button>
+                    <button id="next-button" class="btn btn-primary" style="display: none;" aria-label="Avanzar a la siguiente pregunta">Siguiente</button>
                 </div>
             </div>
         </section>
 
-        <section id="results-screen" class="screen">
+        <section id="results-screen" class="screen" aria-label="Pantalla de resultados">
             <div class="results-content">
                 <h2>Sesión Completada</h2>
-                <div class="final-stats">
+                <div class="final-stats" aria-label="Estadísticas finales de la sesión">
                     <div class="final-stat-item">
                         <span class="final-stat-label">Total de preguntas:</span>
                         <span id="final-total" class="final-stat-value">0</span>
@@ -70,15 +71,15 @@
                         <span id="final-percentage" class="final-stat-value">0%</span>
                     </div>
                 </div>
-                <button id="restart-button" class="btn btn-primary">Volver a empezar</button>
+                <button id="restart-button" class="btn btn-primary" aria-label="Volver a la pantalla de bienvenida">Volver a empezar</button>
             </div>
         </section>
 
-        <section id="error-screen" class="screen">
+        <section id="error-screen" class="screen" aria-label="Pantalla de error">
             <div class="error-content">
                 <h2>Error</h2>
                 <p id="error-message"></p>
-                <button id="retry-button" class="btn btn-primary">Reintentar</button>
+                <button id="retry-button" class="btn btn-primary" aria-label="Reintentar carga de preguntas">Reintentar</button>
             </div>
         </section>
     </main>

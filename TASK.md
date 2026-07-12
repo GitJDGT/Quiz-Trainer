@@ -2,13 +2,13 @@
 
 ## Status
 
-Pending Review
+Completed
 
 ---
 
 ## Increment
 
-**Increment 5 - Results**
+**Increment 6 - User Experience**
 
 Referencia:
 
@@ -18,9 +18,9 @@ Referencia:
 
 ## Objective
 
-Finalizar el ciclo completo de una sesión.
+Mejorar la experiencia de uso sin modificar la funcionalidad principal.
 
-El objetivo de este incremento es mostrar los resultados finales al completar una sesión, incluyendo estadísticas detalladas y permitir al usuario iniciar una nueva sesión.
+El objetivo de este incremento es optimizar la interfaz para diferentes dispositivos, mejorar la accesibilidad y pulir los aspectos visuales para que el MVP esté listo para distribución.
 
 ---
 
@@ -28,12 +28,11 @@ El objetivo de este incremento es mostrar los resultados finales al completar un
 
 Este incremento incluye únicamente:
 
-- Mostrar pantalla de resultados al finalizar la sesión.
-- Calcular y mostrar porcentaje de aciertos.
-- Mostrar estadísticas finales (total, correctas, incorrectas, porcentaje).
-- Implementar botón "Volver a empezar" en la pantalla de resultados.
-- Regresar a la pantalla de bienvenida al hacer clic en "Volver a empezar".
-- Reiniciar completamente el estado de la sesión al iniciar una nueva.
+- Verificar y optimizar el diseño responsive para todos los tamaños de pantalla.
+- Mejorar la accesibilidad (contraste, navegación por teclado, etiquetas ARIA).
+- Optimizar la interfaz para dispositivos móviles.
+- Mejorar la legibilidad y usabilidad general.
+- Verificar que la aplicación funciona correctamente en los navegadores soportados.
 
 ---
 
@@ -41,8 +40,9 @@ Este incremento incluye únicamente:
 
 Las siguientes funcionalidades NO deberán implementarse durante este incremento:
 
-- Diseño responsive.
-- Mejoras visuales adicionales.
+- Nuevas funcionalidades.
+- Cambios en la lógica del negocio.
+- Modificaciones al flujo de usuario.
 - Cualquier funcionalidad descrita en `specs/008-future-enhancements.md`.
 
 Si durante la implementación surge la necesidad de incorporar alguna funcionalidad fuera del alcance definido, el desarrollo deberá detenerse y solicitar aprobación antes de continuar.
@@ -61,6 +61,7 @@ Especialmente:
 - `002-functional-requirements.md`
 - `004-data-model.md`
 - `005-ui-specifications.md`
+- `006-non-functional-requirements.md`
 - `007-system-architecture.md`
 - `009-project-standards.md`
 - `010-repository-structure.md`
@@ -89,16 +90,14 @@ Antes de tomar cualquier decisión de implementación, el agente deberá:
 
 El incremento se considerará completado cuando:
 
-- Al finalizar la sesión se muestre la pantalla de resultados.
-- La pantalla de resultados muestre el total de preguntas.
-- La pantalla de resultados muestre las respuestas correctas.
-- La pantalla de resultados muestre las respuestas incorrectas.
-- La pantalla de resultados muestre el porcentaje de aciertos.
-- El botón "Volver a empezar" esté visible y funcional.
-- Al hacer clic en "Volver a empezar" se regrese a la pantalla de bienvenida.
-- Al iniciar una nueva sesión, el estado se reinicie completamente.
-- Las estadísticas finales sean correctas.
-- Se cumplan todos los criterios definidos para el Incremento 5 en `011-development-roadmap.md`.
+- La aplicación funciona correctamente en escritorio.
+- La aplicación funciona correctamente en dispositivos móviles.
+- La interfaz mantiene un comportamiento consistente en diferentes tamaños de pantalla.
+- Los textos son legibles en todos los dispositivos.
+- Los controles son claramente identificables.
+- El contraste es adecuado para facilitar el uso.
+- La navegación por teclado funciona correctamente.
+- Se cumplan todos los criterios definidos para el Incremento 6 en `011-development-roadmap.md`.
 
 ---
 
@@ -106,11 +105,10 @@ El incremento se considerará completado cuando:
 
 Al finalizar este incremento deberán existir, como mínimo:
 
-- Pantalla de resultados funcional.
-- Cálculo de porcentaje de aciertos.
-- Estadísticas finales detalladas.
-- Botón "Volver a empezar" funcional.
-- Mecanismo de reinicio de sesión.
+- Diseño responsive completo.
+- Mejoras de accesibilidad implementadas.
+- Interfaz optimizada para móviles.
+- MVP listo para distribución.
 
 ---
 
@@ -133,14 +131,14 @@ Antes de marcar la tarea como finalizada, deberá verificarse que:
 
 Al finalizar este incremento, el proyecto deberá encontrarse en un estado funcional que permita:
 
-- Abrir la aplicación desde un navegador.
-- Iniciar una sesión y completarla completamente.
-- Ver la pantalla de resultados con estadísticas detalladas.
-- Verificar que el porcentaje de aciertos es correcto.
-- Hacer clic en "Volver a empezar" y regresar a la pantalla de bienvenida.
-- Iniciar una nueva sesión con estado completamente reiniciado.
+- Abrir la aplicación en un navegador de escritorio y verificar que se ve correctamente.
+- Abrir la aplicación en un navegador móvil y verificar que se adapta a la pantalla.
+- Verificar que todos los elementos son legibles y accesibles.
+- Verificar que los controles son fáciles de usar en dispositivos táctiles.
+- Verificar que el contraste de colores es adecuado.
+- Verificar que la navegación por teclado funciona.
 
-Este incremento marca el primer MVP completamente funcional.
+Este incremento marca el MVP listo para distribución.
 
 ---
 
@@ -149,7 +147,7 @@ Este incremento marca el primer MVP completamente funcional.
 Una vez completado este incremento:
 
 - Detener inmediatamente el desarrollo.
-- No iniciar el Incremento 6.
+- No iniciar el Incremento 7.
 - Esperar la revisión y aprobación del usuario antes de continuar.
 
 ---

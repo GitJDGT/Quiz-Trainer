@@ -73,6 +73,11 @@ body {
     transform: translateY(0);
 }
 
+.btn:focus-visible {
+    outline: 3px solid #e94560;
+    outline-offset: 2px;
+}
+
 .btn-primary {
     background-color: #e94560;
     color: #ffffff;
@@ -202,6 +207,11 @@ body {
 .option:hover {
     background-color: #0f3460;
     border-color: #533483;
+}
+
+.option:focus-within {
+    outline: 3px solid #e94560;
+    outline-offset: 2px;
 }
 
 .option.selected {
@@ -368,5 +378,49 @@ body {
 
     .final-stat-value {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 12px;
+    }
+
+    .welcome-content,
+    .question-container,
+    .results-content,
+    .error-content {
+        padding: 20px;
+    }
+
+    .welcome-content h1 {
+        font-size: 1.3rem;
+    }
+
+    .welcome-content p {
+        font-size: 1rem;
+    }
+
+    .question-statement {
+        font-size: 1rem;
+    }
+
+    .session-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat-item {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 14px 28px;
+        font-size: 1.1rem;
+    }
+
+    .option {
+        padding: 14px;
     }
 }

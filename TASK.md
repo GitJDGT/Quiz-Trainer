@@ -8,7 +8,7 @@ Completed
 
 ## Increment
 
-**Increment 6 - User Experience**
+**Increment 7 - Testing & Validation**
 
 Referencia:
 
@@ -18,9 +18,9 @@ Referencia:
 
 ## Objective
 
-Mejorar la experiencia de uso sin modificar la funcionalidad principal.
+Validar que el sistema cumple completamente con la especificación.
 
-El objetivo de este incremento es optimizar la interfaz para diferentes dispositivos, mejorar la accesibilidad y pulir los aspectos visuales para que el MVP esté listo para distribución.
+El objetivo de este incremento es realizar una verificación exhaustiva de la aplicación para asegurar que cumple con todos los requisitos funcionales, no funcionales y estándares definidos en los documentos de especificación.
 
 ---
 
@@ -28,11 +28,14 @@ El objetivo de este incremento es optimizar la interfaz para diferentes disposit
 
 Este incremento incluye únicamente:
 
-- Verificar y optimizar el diseño responsive para todos los tamaños de pantalla.
-- Mejorar la accesibilidad (contraste, navegación por teclado, etiquetas ARIA).
-- Optimizar la interfaz para dispositivos móviles.
-- Mejorar la legibilidad y usabilidad general.
-- Verificar que la aplicación funciona correctamente en los navegadores soportados.
+- Verificar requisitos funcionales (002-functional-requirements.md).
+- Verificar requisitos no funcionales (006-non-functional-requirements.md).
+- Verificar flujo de usuario (003-user-flow.md).
+- Verificar arquitectura (007-system-architecture.md).
+- Verificar compatibilidad entre navegadores.
+- Verificar cumplimiento de estándares del proyecto (009-project-standards.md).
+- Verificar estructura del repositorio (010-repository-structure.md).
+- Generar informe de validación.
 
 ---
 
@@ -41,17 +44,17 @@ Este incremento incluye únicamente:
 Las siguientes funcionalidades NO deberán implementarse durante este incremento:
 
 - Nuevas funcionalidades.
-- Cambios en la lógica del negocio.
-- Modificaciones al flujo de usuario.
+- Modificaciones al código.
+- Cambios en la especificación.
 - Cualquier funcionalidad descrita en `specs/008-future-enhancements.md`.
 
-Si durante la implementación surge la necesidad de incorporar alguna funcionalidad fuera del alcance definido, el desarrollo deberá detenerse y solicitar aprobación antes de continuar.
+Si durante la validación se identifica algún problema, deberá documentarse en el informe pero no corregirse durante este incremento.
 
 ---
 
 ## Constraints
 
-La implementación deberá cumplir obligatoriamente con:
+La verificación deberá realizarse obligatoriamente contra:
 
 - `AGENTS.md`
 - Todos los documentos contenidos en `specs/`
@@ -59,6 +62,7 @@ La implementación deberá cumplir obligatoriamente con:
 Especialmente:
 
 - `002-functional-requirements.md`
+- `003-user-flow.md`
 - `004-data-model.md`
 - `005-ui-specifications.md`
 - `006-non-functional-requirements.md`
@@ -67,22 +71,18 @@ Especialmente:
 - `010-repository-structure.md`
 - `012-definition-of-done.md`
 
-En caso de conflicto entre documentos, no deberán realizarse suposiciones. El desarrollo deberá detenerse y solicitar aclaración.
-
 ---
 
 ## Agent Instructions
 
 Antes de tomar cualquier decisión de implementación, el agente deberá:
 
-1. Leer las especificaciones relacionadas con el incremento actual.
-2. Preferir siempre la solución más simple que cumpla completamente los requisitos.
-3. No implementar funcionalidades pertenecientes a incrementos futuros.
-4. No modificar ningún documento de especificación.
-5. No realizar suposiciones cuando exista ambigüedad.
-6. Solicitar aclaración antes de continuar si encuentra inconsistencias.
-7. Mantener una arquitectura modular y de bajo acoplamiento.
-8. Respetar los estándares definidos para el proyecto.
+1. Leer completamente todos los documentos de especificación.
+2. Verificar cada requisito de forma individual.
+3. Documentar cualquier desviación encontrada.
+4. No realizar suposiciones cuando exista ambigüedad.
+5. Solicitar aclaración antes de continuar si encuentra inconsistencias.
+6. Generar un informe detallado de la validación.
 
 ---
 
@@ -90,14 +90,14 @@ Antes de tomar cualquier decisión de implementación, el agente deberá:
 
 El incremento se considerará completado cuando:
 
-- La aplicación funciona correctamente en escritorio.
-- La aplicación funciona correctamente en dispositivos móviles.
-- La interfaz mantiene un comportamiento consistente en diferentes tamaños de pantalla.
-- Los textos son legibles en todos los dispositivos.
-- Los controles son claramente identificables.
-- El contraste es adecuado para facilitar el uso.
-- La navegación por teclado funciona correctamente.
-- Se cumplan todos los criterios definidos para el Incremento 6 en `011-development-roadmap.md`.
+- Todos los documentos de la carpeta `specs/` se cumplen.
+- No existen errores funcionales conocidos.
+- El flujo de usuario funciona correctamente.
+- La arquitectura respeta la separación de responsabilidades.
+- La aplicación es compatible con los navegadores soportados.
+- Los estándares del proyecto se respetan.
+- La estructura del repositorio es correcta.
+- Se genera un informe de validación completo.
 
 ---
 
@@ -105,10 +105,12 @@ El incremento se considerará completado cuando:
 
 Al finalizar este incremento deberán existir, como mínimo:
 
-- Diseño responsive completo.
-- Mejoras de accesibilidad implementadas.
-- Interfaz optimizada para móviles.
-- MVP listo para distribución.
+- Informe de validación de requisitos funcionales.
+- Informe de validación de requisitos no funcionales.
+- Informe de validación de flujo de usuario.
+- Informe de validación de arquitectura.
+- Informe de compatibilidad entre navegadores.
+- Versión estable del Quiz Engine.
 
 ---
 
@@ -129,16 +131,16 @@ Antes de marcar la tarea como finalizada, deberá verificarse que:
 
 ## Expected Output
 
-Al finalizar este incremento, el proyecto deberá encontrarse en un estado funcional que permita:
+Al finalizar este incremento, el proyecto deberá encontrarse en un estado verificado que permita:
 
-- Abrir la aplicación en un navegador de escritorio y verificar que se ve correctamente.
-- Abrir la aplicación en un navegador móvil y verificar que se adapta a la pantalla.
-- Verificar que todos los elementos son legibles y accesibles.
-- Verificar que los controles son fáciles de usar en dispositivos táctiles.
-- Verificar que el contraste de colores es adecuado.
-- Verificar que la navegación por teclado funciona.
+- Confirmar que todos los requisitos funcionales se cumplen.
+- Confirmar que todos los requisitos no funcionales se cumplen.
+- Confirmar que el flujo de usuario funciona correctamente.
+- Confirmar que la arquitectura es correcta.
+- Confirmar que la aplicación es compatible con los navegadores soportados.
+- Disponer de un informe de validación completo.
 
-Este incremento marca el MVP listo para distribución.
+Este incremento marca la versión estable del Quiz Engine.
 
 ---
 
@@ -146,9 +148,9 @@ Este incremento marca el MVP listo para distribución.
 
 Una vez completado este incremento:
 
-- Detener inmediatamente el desarrollo.
-- No iniciar el Incremento 7.
-- Esperar la revisión y aprobación del usuario antes de continuar.
+- El proyecto habrá completado todos los incrementos del roadmap.
+- La versión estable del Quiz Engine estará lista para distribución.
+- No existen incrementos adicionales pendientes.
 
 ---
 
@@ -170,14 +172,13 @@ No deberá modificarse ningún otro apartado del documento durante el desarrollo
 
 ## Change Control
 
-Si durante el desarrollo el agente identifica una mejora, refactorización o cambio arquitectónico que no esté contemplado en las especificaciones, deberá:
+Si durante la validación el agente identifica un problema que requiere una corrección, deberá:
 
-1. Detener la implementación relacionada.
-2. Documentar la propuesta.
-3. Explicar sus beneficios y posibles impactos.
-4. Esperar aprobación antes de modificar las especificaciones o el código.
+1. Documentar el problema en el informe de validación.
+2. Explicar el impacto del problema.
+3. Esperar aprobación antes de realizar cualquier corrección.
 
-No deberán realizarse cambios de alcance de manera automática.
+No deberán realizarse correcciones automáticas durante este incremento.
 
 ---
 
@@ -185,4 +186,4 @@ No deberán realizarse cambios de alcance de manera automática.
 
 No disponible.
 
-Este apartado solo podrá actualizarse al siguiente incremento cuando el incremento actual haya sido aprobado y marcado como Completed.
+Este es el último incremento del roadmap. Una vez completado, el proyecto habrá finalizado su ciclo de desarrollo inicial.

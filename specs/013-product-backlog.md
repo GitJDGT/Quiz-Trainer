@@ -57,5 +57,5 @@ El archivo `specs/008-future-enhancements.md` contiene la lista original de mejo
 ## Notas
 
 - Las funcionalidades FE-001 a FE-020 corresponden al archivo original `008-future-enhancements.md`
-- FE-010 requiere agregar campo `explanation` al modelo de datos (definido en specs/004-data-model.md)
+- Las funcionalidades FE-001 y FE-017 requieren agregar campo `explanation` al modelo de datos (definido en specs/004-data-model.md)
 - Las releases futuras pueden incluir múltiples funcionalidades según prioridades del producto

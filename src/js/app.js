@@ -10,7 +10,7 @@ var App = {
 
     bindEvents() {
         UI.onStart(function() { App.startQuiz(); });
-        UI.onImport(function(file) { App.importQuestions(file); });
+        UI.onImport(function(files) { App.importQuestionsFromFolder(files); });
         UI.onStartImported(function() { App.startQuiz(); });
         UI.onCancelImport(function() { App.cancelImport(); });
         UI.onAnswer(function() { App.submitAnswer(); });
@@ -48,7 +48,35 @@ var App = {
         UI.showQuestion(question, QuizEngine.getCurrentQuestionNumber(), QuizEngine.getTotalQuestions());
     },
 
-    importQuestions(file) {
+    importQuestionsFromFolder(files) {
+        var jsonFile = null;
+        var fallbackJsonFile = null;
+        var imagesMap = {};
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var fileName = file.name.toLowerCase();
+
+            if (fileName.endsWith('.json')) {
+                if (fileName === 'questions.json') {
+                    jsonFile = file;
+                } else if (fileName !== 'metadata.json' && !fallbackJsonFile) {
+                    fallbackJsonFile = file;
+                }
+            } else if (fileName.endsWith('.png') || fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') || fileName.endsWith('.gif') || fileName.endsWith('.webp')) {
+                imagesMap[file.name] = URL.createObjectURL(file);
+            }
+        }
+
+        if (!jsonFile && fallbackJsonFile) {
+            jsonFile = fallbackJsonFile;
+        }
+
+        if (!jsonFile) {
+            UI.showError('No se encontró un archivo JSON de preguntas en la carpeta seleccionada.');
+            return;
+        }
+
         var reader = new FileReader();
 
         reader.onload = function(event) {
@@ -57,21 +85,39 @@ var App = {
 
             if (result.success) {
                 App.importedQuestions = result.questions;
-                UI.showImportConfirm('Banco de preguntas importado correctamente. ' + result.count + ' preguntas cargadas.');
+                UI.clearImportedImages();
+                UI.setImportedImages(imagesMap);
+
+                var imageCount = Object.keys(imagesMap).length;
+                var message = 'Banco de preguntas importado correctamente. ' + result.count + ' preguntas cargadas.';
+                if (imageCount > 0) {
+                    message += ' ' + imageCount + ' imágenes encontradas.';
+                }
+                UI.showImportConfirm(message);
             } else {
+                App.cleanupImages(imagesMap);
                 UI.showError('Error al importar: ' + result.message);
             }
         };
 
         reader.onerror = function() {
-            UI.showError('Error al leer el archivo. Asegúrate de que sea un archivo válido.');
+            App.cleanupImages(imagesMap);
+            UI.showError('Error al leer el archivo JSON.');
         };
 
-        reader.readAsText(file);
+        reader.readAsText(jsonFile);
+    },
+
+    cleanupImages(imagesMap) {
+        var keys = Object.keys(imagesMap);
+        for (var i = 0; i < keys.length; i++) {
+            URL.revokeObjectURL(imagesMap[keys[i]]);
+        }
     },
 
     cancelImport() {
         this.importedQuestions = null;
+        UI.clearImportedImages();
         UI.showScreen('welcome');
     },
 
@@ -170,6 +216,7 @@ var App = {
     abortQuiz() {
         this.currentQuestionAnswered = false;
         this.importedQuestions = null;
+        UI.clearImportedImages();
         QuizEngine.reset();
         UI.showScreen('welcome');
     },
@@ -177,6 +224,7 @@ var App = {
     restartQuiz() {
         this.currentQuestionAnswered = false;
         this.importedQuestions = null;
+        UI.clearImportedImages();
         QuizEngine.reset();
         UI.showScreen('welcome');
     },
@@ -184,6 +232,7 @@ var App = {
     goHome() {
         this.currentQuestionAnswered = false;
         this.importedQuestions = null;
+        UI.clearImportedImages();
         UI.showScreen('welcome');
     }
 };

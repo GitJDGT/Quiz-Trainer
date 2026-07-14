@@ -7,7 +7,7 @@ var UI = {
         errorScreen: null,
         startButton: null,
         importButton: null,
-        fileInput: null,
+        folderInput: null,
         startImportedButton: null,
         cancelImportButton: null,
         importConfirmMessage: null,
@@ -37,6 +37,7 @@ var UI = {
     selectedOptionIndex: -1,
     escPressCount: 0,
     escPressTimer: null,
+    importedImages: {},
 
     init() {
         this.elements.welcomeScreen = document.getElementById('welcome-screen');
@@ -46,7 +47,7 @@ var UI = {
         this.elements.errorScreen = document.getElementById('error-screen');
         this.elements.startButton = document.getElementById('start-button');
         this.elements.importButton = document.getElementById('import-button');
-        this.elements.fileInput = document.getElementById('file-input');
+        this.elements.folderInput = document.getElementById('folder-input');
         this.elements.startImportedButton = document.getElementById('start-imported-button');
         this.elements.cancelImportButton = document.getElementById('cancel-import-button');
         this.elements.importConfirmMessage = document.getElementById('import-confirm-message');
@@ -207,6 +208,28 @@ var UI = {
         this.showScreen('import-confirm');
     },
 
+    setImportedImages(imagesMap) {
+        this.importedImages = imagesMap;
+    },
+
+    clearImportedImages() {
+        var keys = Object.keys(this.importedImages);
+        for (var i = 0; i < keys.length; i++) {
+            URL.revokeObjectURL(this.importedImages[keys[i]]);
+        }
+        this.importedImages = {};
+    },
+
+    getImageUrl(imageName) {
+        if (!imageName) return null;
+        
+        if (this.importedImages[imageName]) {
+            return this.importedImages[imageName];
+        }
+        
+        return 'assets/question-banks/images/' + imageName;
+    },
+
     showQuestion(question, questionNumber, totalQuestions) {
         this.elements.currentQuestion.textContent = questionNumber;
         this.elements.totalQuestions.textContent = totalQuestions;
@@ -214,7 +237,8 @@ var UI = {
         this.elements.questionStatement.textContent = question.statement;
 
         if (question.image) {
-            this.elements.questionImage.innerHTML = '<img src="assets/question-banks/images/' + question.image + '" alt="Imagen de la pregunta">';
+            var imageUrl = this.getImageUrl(question.image);
+            this.elements.questionImage.innerHTML = '<img src="' + imageUrl + '" alt="Imagen de la pregunta">';
             this.elements.questionImage.style.display = 'block';
         } else {
             this.elements.questionImage.innerHTML = '';
@@ -325,13 +349,13 @@ var UI = {
 
     onImport(callback) {
         this.elements.importButton.addEventListener('click', function() {
-            this.elements.fileInput.click();
+            this.elements.folderInput.click();
         }.bind(this));
 
-        this.elements.fileInput.addEventListener('change', function(event) {
-            var file = event.target.files[0];
-            if (file) {
-                callback(file);
+        this.elements.folderInput.addEventListener('change', function(event) {
+            var files = event.target.files;
+            if (files && files.length > 0) {
+                callback(files);
             }
             event.target.value = '';
         });

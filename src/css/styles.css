@@ -61,6 +61,13 @@ body {
     align-items: center;
 }
 
+.import-hint {
+    font-size: 0.75rem;
+    color: #6a6a8a;
+    margin-top: 16px;
+    text-align: center;
+}
+
 .import-confirm-content {
     text-align: center;
     background: #16213e;
@@ -273,9 +280,13 @@ body {
     padding: 32px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
     border: 1px solid #0f3460;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .question-image {
@@ -295,23 +306,32 @@ body {
     color: #ffffff;
     margin-bottom: 24px;
     line-height: 1.5;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: left;
 }
 
 .options-container {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 100%;
+    min-width: 0;
 }
 
 .option {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding: 16px;
     background-color: #1a1a2e;
     border: 2px solid #0f3460;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.1s ease, border-color 0.1s ease;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
 }
 
 .option:hover {
@@ -331,10 +351,12 @@ body {
 
 .option input[type="radio"] {
     margin-right: 12px;
+    margin-top: 4px;
     width: 20px;
     height: 20px;
     cursor: pointer;
     accent-color: #e94560;
+    flex-shrink: 0;
 }
 
 .option label {
@@ -342,6 +364,11 @@ body {
     flex: 1;
     font-size: 1rem;
     color: #e0e0e0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-align: left;
+    min-width: 0;
 }
 
 .feedback-message {

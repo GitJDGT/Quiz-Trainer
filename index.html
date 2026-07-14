@@ -13,7 +13,22 @@
             <div class="welcome-content">
                 <h1>Quiz Trainer</h1>
                 <p>¿Listo para el siguiente quiz?</p>
-                <button id="start-button" class="btn btn-primary" aria-label="Iniciar nueva sesión de práctica">Comenzar</button>
+                <div class="welcome-buttons">
+                    <button id="start-button" class="btn btn-primary" aria-label="Iniciar nueva sesión de práctica">Comenzar</button>
+                    <button id="import-button" class="btn btn-secondary" aria-label="Importar banco de preguntas desde archivo">Importar</button>
+                </div>
+                <input type="file" id="file-input" accept=".json" style="display: none;" aria-hidden="true">
+            </div>
+        </section>
+
+        <section id="import-confirm-screen" class="screen" aria-label="Confirmación de importación">
+            <div class="import-confirm-content">
+                <h2>Importación Exitosa</h2>
+                <p id="import-confirm-message"></p>
+                <div class="import-confirm-buttons">
+                    <button id="start-imported-button" class="btn btn-primary" aria-label="Iniciar quiz con preguntas importadas">Comenzar Quiz</button>
+                    <button id="cancel-import-button" class="btn btn-secondary" aria-label="Cancelar importación y volver a inicio">Cancelar</button>
+                </div>
             </div>
         </section>
 
@@ -44,8 +59,14 @@
                 <div id="options-container" class="options-container" role="radiogroup" aria-label="Opciones de respuesta"></div>
                 <div id="feedback-message" class="feedback-message" style="display: none;" aria-live="assertive" role="alert"></div>
                 <div class="action-buttons">
-                    <button id="answer-button" class="btn btn-primary" disabled aria-label="Enviar respuesta seleccionada">Responder</button>
-                    <button id="next-button" class="btn btn-primary" style="display: none;" aria-label="Avanzar a la siguiente pregunta">Siguiente</button>
+                    <button id="answer-button" class="btn btn-answer" disabled aria-label="Enviar respuesta seleccionada">Responder</button>
+                    <button id="next-button" class="btn btn-next" disabled aria-label="Avanzar a la siguiente pregunta">Siguiente</button>
+                </div>
+                <div class="abort-container">
+                    <button id="abort-button" class="btn btn-abort" aria-label="Abortar quiz y volver a inicio">Abortar Quiz</button>
+                </div>
+                <div class="keyboard-hint" aria-hidden="true">
+                    <span>Flechas: navegar | Enter: confirmar | ESC x2: abortar</span>
                 </div>
             </div>
         </section>
@@ -71,7 +92,10 @@
                         <span id="final-percentage" class="final-stat-value">0%</span>
                     </div>
                 </div>
-                <button id="restart-button" class="btn btn-primary" aria-label="Volver a la pantalla de bienvenida">Volver a empezar</button>
+                <div class="results-buttons">
+                    <button id="restart-button" class="btn btn-primary" aria-label="Volver a la pantalla de bienvenida">Volver a empezar</button>
+                    <button id="export-button" class="btn btn-secondary" aria-label="Exportar banco de preguntas actual">Exportar</button>
+                </div>
             </div>
         </section>
 
@@ -79,7 +103,7 @@
             <div class="error-content">
                 <h2>Error</h2>
                 <p id="error-message"></p>
-                <button id="retry-button" class="btn btn-primary" aria-label="Reintentar carga de preguntas">Reintentar</button>
+                <button id="error-home-button" class="btn btn-primary" aria-label="Volver a la pantalla de bienvenida">Volver a Inicio</button>
             </div>
         </section>
     </main>

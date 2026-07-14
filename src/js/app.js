@@ -1,5 +1,6 @@
 var App = {
     currentQuestionAnswered: false,
+    importedQuestions: null,
 
     init() {
         UI.init();
@@ -9,16 +10,27 @@ var App = {
 
     bindEvents() {
         UI.onStart(function() { App.startQuiz(); });
+        UI.onImport(function(file) { App.importQuestions(file); });
+        UI.onStartImported(function() { App.startQuiz(); });
+        UI.onCancelImport(function() { App.cancelImport(); });
         UI.onAnswer(function() { App.submitAnswer(); });
         UI.onNext(function() { App.nextQuestion(); });
+        UI.onAbort(function() { App.abortQuiz(); });
         UI.onRestart(function() { App.restartQuiz(); });
-        UI.onRetry(function() { App.startQuiz(); });
+        UI.onExport(function() { App.exportQuestions(); });
+        UI.onErrorHome(function() { App.goHome(); });
         UI.onOptionSelect(function(optionId) { App.onOptionSelected(optionId); });
     },
 
     startQuiz() {
         this.currentQuestionAnswered = false;
-        var result = QuizEngine.init();
+        var result;
+
+        if (this.importedQuestions) {
+            result = QuizEngine.initWithQuestions(this.importedQuestions);
+        } else {
+            result = QuizEngine.init();
+        }
 
         if (!result.success) {
             UI.showError(result.message);
@@ -36,12 +48,57 @@ var App = {
         UI.showQuestion(question, QuizEngine.getCurrentQuestionNumber(), QuizEngine.getTotalQuestions());
     },
 
+    importQuestions(file) {
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+            var jsonString = event.target.result;
+            var result = QuestionRepository.importQuestions(jsonString);
+
+            if (result.success) {
+                App.importedQuestions = result.questions;
+                UI.showImportConfirm('Banco de preguntas importado correctamente. ' + result.count + ' preguntas cargadas.');
+            } else {
+                UI.showError('Error al importar: ' + result.message);
+            }
+        };
+
+        reader.onerror = function() {
+            UI.showError('Error al leer el archivo. Asegúrate de que sea un archivo válido.');
+        };
+
+        reader.readAsText(file);
+    },
+
+    cancelImport() {
+        this.importedQuestions = null;
+        UI.showScreen('welcome');
+    },
+
+    exportQuestions() {
+        var result = QuestionRepository.exportQuestions();
+
+        if (!result.success) {
+            UI.showError(result.message);
+            return;
+        }
+
+        var blob = new Blob([result.data], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'quiz-trainer-questions.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    },
+
     onOptionSelected(optionId) {
         if (this.currentQuestionAnswered) {
             return;
         }
 
-        UI.showAnswerButton();
         UI.enableAnswerButton();
         UI.highlightSelectedOption(optionId);
     },
@@ -72,9 +129,8 @@ var App = {
 
         UI.disableOptions();
         UI.disableAnswerButton();
-        UI.hideAnswerButton();
+        UI.enableNextButton();
         UI.showFeedback(isCorrect);
-        UI.showNextButton();
     },
 
     nextQuestion() {
@@ -111,9 +167,23 @@ var App = {
         UI.updateStats(correct, incorrect, progress);
     },
 
+    abortQuiz() {
+        this.currentQuestionAnswered = false;
+        this.importedQuestions = null;
+        QuizEngine.reset();
+        UI.showScreen('welcome');
+    },
+
     restartQuiz() {
         this.currentQuestionAnswered = false;
+        this.importedQuestions = null;
         QuizEngine.reset();
+        UI.showScreen('welcome');
+    },
+
+    goHome() {
+        this.currentQuestionAnswered = false;
+        this.importedQuestions = null;
         UI.showScreen('welcome');
     }
 };

@@ -54,15 +54,52 @@ body {
     margin-bottom: 24px;
 }
 
+.welcome-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.import-confirm-content {
+    text-align: center;
+    background: #16213e;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid #52b788;
+}
+
+.import-confirm-content h2 {
+    font-size: 1.8rem;
+    color: #52b788;
+    margin-bottom: 16px;
+}
+
+.import-confirm-content p {
+    font-size: 1.1rem;
+    color: #a0a0b0;
+    margin-bottom: 24px;
+}
+
+.import-confirm-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
 .btn {
     display: inline-block;
     padding: 12px 24px;
     font-size: 1rem;
     font-weight: 600;
-    border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    min-width: 140px;
 }
 
 .btn:hover {
@@ -78,20 +115,93 @@ body {
     outline-offset: 2px;
 }
 
+.btn:disabled {
+    background-color: #3a3a5a;
+    color: #6a6a8a;
+    cursor: not-allowed;
+    transform: none;
+}
+
 .btn-primary {
-    background-color: #e94560;
-    color: #ffffff;
+    background-color: transparent;
+    color: #e94560;
+    border: 1px solid #e94560;
 }
 
 .btn-primary:hover {
-    background-color: #c73e54;
+    background-color: #e94560;
+    color: #ffffff;
 }
 
 .btn-primary:disabled {
     background-color: #3a3a5a;
     color: #6a6a8a;
-    cursor: not-allowed;
-    transform: none;
+    border-color: #e94560;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #3498db;
+    border: 1px solid #3498db;
+}
+
+.btn-secondary:hover {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.btn-secondary:disabled {
+    background-color: #3a3a5a;
+    color: #6a6a8a;
+    border-color: #3498db;
+}
+
+.btn-answer {
+    background-color: transparent;
+    color: #7c5cbf;
+    border: 1px solid #7c5cbf;
+}
+
+.btn-answer:hover {
+    background-color: #7c5cbf;
+    color: #ffffff;
+}
+
+.btn-answer:disabled {
+    background-color: #3a3a5a;
+    color: #6a6a8a;
+    border-color: #7c5cbf;
+}
+
+.btn-next {
+    background-color: transparent;
+    color: #3498db;
+    border: 1px solid #3498db;
+}
+
+.btn-next:hover {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.btn-next:disabled {
+    background-color: #3a3a5a;
+    color: #6a6a8a;
+    border-color: #3498db;
+}
+
+.btn-abort {
+    background-color: transparent;
+    color: #e94560;
+    border: 1px solid #e94560;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    min-width: auto;
+}
+
+.btn-abort:hover {
+    background-color: #e94560;
+    color: #ffffff;
 }
 
 .progress-bar {
@@ -257,9 +367,24 @@ body {
 
 .action-buttons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 12px;
     margin-top: 24px;
+}
+
+.abort-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #0f3460;
+}
+
+.keyboard-hint {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.75rem;
+    color: #6a6a8a;
 }
 
 .results-content {
@@ -277,6 +402,13 @@ body {
     font-size: 1.8rem;
     color: #e94560;
     margin-bottom: 24px;
+}
+
+.results-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
 }
 
 .final-stats {
@@ -325,7 +457,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     max-width: 500px;
     width: 100%;
-    border: 1px solid #0f3460;
+    border: 1px solid #e94560;
 }
 
 .error-content h2 {
@@ -346,6 +478,7 @@ body {
     }
 
     .welcome-content,
+    .import-confirm-content,
     .question-container,
     .results-content,
     .error-content {
@@ -387,6 +520,7 @@ body {
     }
 
     .welcome-content,
+    .import-confirm-content,
     .question-container,
     .results-content,
     .error-content {

@@ -17,6 +17,38 @@ var QuestionRepository = {
         }
     },
 
+    importQuestions(jsonString) {
+        try {
+            var data = JSON.parse(jsonString);
+            var validationResult = this.validateQuestions(data);
+
+            if (!validationResult.isValid) {
+                return { success: false, message: validationResult.message };
+            }
+
+            this.questions = data;
+            return { success: true, questions: this.questions, count: this.questions.length };
+        } catch (error) {
+            if (error instanceof SyntaxError) {
+                return { success: false, message: 'El archivo no contiene un JSON válido.' };
+            }
+            return { success: false, message: error.message };
+        }
+    },
+
+    exportQuestions() {
+        if (this.questions.length === 0) {
+            return { success: false, message: 'No hay preguntas para exportar.' };
+        }
+
+        var jsonString = JSON.stringify(this.questions, null, 2);
+        return { success: true, data: jsonString };
+    },
+
+    getQuestions() {
+        return this.questions;
+    },
+
     validateQuestions(data) {
         if (!Array.isArray(data)) {
             return { isValid: false, message: 'El banco de preguntas debe ser un arreglo.' };
@@ -79,10 +111,6 @@ var QuestionRepository = {
         }
 
         return { isValid: true };
-    },
-
-    getQuestions() {
-        return this.questions;
     },
 
     getQuestionById(id) {

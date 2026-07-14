@@ -1,14 +1,22 @@
 var UI = {
     elements: {
         welcomeScreen: null,
+        importConfirmScreen: null,
         questionScreen: null,
         resultsScreen: null,
         errorScreen: null,
         startButton: null,
+        importButton: null,
+        fileInput: null,
+        startImportedButton: null,
+        cancelImportButton: null,
+        importConfirmMessage: null,
         answerButton: null,
         nextButton: null,
+        abortButton: null,
         restartButton: null,
-        retryButton: null,
+        exportButton: null,
+        errorHomeButton: null,
         questionImage: null,
         questionStatement: null,
         optionsContainer: null,
@@ -26,16 +34,28 @@ var UI = {
         errorMessage: null
     },
 
+    selectedOptionIndex: -1,
+    escPressCount: 0,
+    escPressTimer: null,
+
     init() {
         this.elements.welcomeScreen = document.getElementById('welcome-screen');
+        this.elements.importConfirmScreen = document.getElementById('import-confirm-screen');
         this.elements.questionScreen = document.getElementById('question-screen');
         this.elements.resultsScreen = document.getElementById('results-screen');
         this.elements.errorScreen = document.getElementById('error-screen');
         this.elements.startButton = document.getElementById('start-button');
+        this.elements.importButton = document.getElementById('import-button');
+        this.elements.fileInput = document.getElementById('file-input');
+        this.elements.startImportedButton = document.getElementById('start-imported-button');
+        this.elements.cancelImportButton = document.getElementById('cancel-import-button');
+        this.elements.importConfirmMessage = document.getElementById('import-confirm-message');
         this.elements.answerButton = document.getElementById('answer-button');
         this.elements.nextButton = document.getElementById('next-button');
+        this.elements.abortButton = document.getElementById('abort-button');
         this.elements.restartButton = document.getElementById('restart-button');
-        this.elements.retryButton = document.getElementById('retry-button');
+        this.elements.exportButton = document.getElementById('export-button');
+        this.elements.errorHomeButton = document.getElementById('error-home-button');
         this.elements.questionImage = document.getElementById('question-image');
         this.elements.questionStatement = document.getElementById('question-statement');
         this.elements.optionsContainer = document.getElementById('options-container');
@@ -51,10 +71,109 @@ var UI = {
         this.elements.finalIncorrect = document.getElementById('final-incorrect');
         this.elements.finalPercentage = document.getElementById('final-percentage');
         this.elements.errorMessage = document.getElementById('error-message');
+
+        this.setupKeyboardNavigation();
+    },
+
+    setupKeyboardNavigation() {
+        document.addEventListener('keydown', function(event) {
+            var activeScreen = document.querySelector('.screen.active');
+            
+            if (!activeScreen) return;
+
+            if (activeScreen.id === 'question-screen') {
+                this.handleQuestionScreenKeyboard(event);
+            }
+        }.bind(this));
+    },
+
+    handleQuestionScreenKeyboard(event) {
+        var options = this.elements.optionsContainer.querySelectorAll('.option');
+        var isAnswered = this.elements.answerButton.disabled && this.elements.nextButton.disabled === false;
+
+        switch (event.key) {
+            case 'ArrowUp':
+            case 'ArrowLeft':
+                event.preventDefault();
+                if (!isAnswered) {
+                    this.selectPreviousOption(options);
+                }
+                break;
+
+            case 'ArrowDown':
+            case 'ArrowRight':
+                event.preventDefault();
+                if (!isAnswered) {
+                    this.selectNextOption(options);
+                }
+                break;
+
+            case 'Enter':
+                event.preventDefault();
+                if (!isAnswered && !this.elements.answerButton.disabled) {
+                    this.elements.answerButton.click();
+                } else if (isAnswered && !this.elements.nextButton.disabled) {
+                    this.elements.nextButton.click();
+                }
+                break;
+
+            case 'Escape':
+                event.preventDefault();
+                this.escPressCount++;
+                
+                if (this.escPressTimer) {
+                    clearTimeout(this.escPressTimer);
+                }
+
+                if (this.escPressCount >= 2) {
+                    this.escPressCount = 0;
+                    this.elements.abortButton.click();
+                } else {
+                    this.escPressTimer = setTimeout(function() {
+                        this.escPressCount = 0;
+                    }.bind(this), 500);
+                }
+                break;
+        }
+    },
+
+    selectPreviousOption(options) {
+        if (options.length === 0) return;
+
+        if (this.selectedOptionIndex <= 0) {
+            this.selectedOptionIndex = options.length - 1;
+        } else {
+            this.selectedOptionIndex--;
+        }
+
+        this.selectOptionByIndex(options, this.selectedOptionIndex);
+    },
+
+    selectNextOption(options) {
+        if (options.length === 0) return;
+
+        if (this.selectedOptionIndex >= options.length - 1) {
+            this.selectedOptionIndex = 0;
+        } else {
+            this.selectedOptionIndex++;
+        }
+
+        this.selectOptionByIndex(options, this.selectedOptionIndex);
+    },
+
+    selectOptionByIndex(options, index) {
+        if (index < 0 || index >= options.length) return;
+
+        var radio = options[index].querySelector('input[type="radio"]');
+        if (radio) {
+            radio.checked = true;
+            radio.dispatchEvent(new Event('change', { bubbles: true }));
+        }
     },
 
     showScreen(screenName) {
         this.elements.welcomeScreen.classList.remove('active');
+        this.elements.importConfirmScreen.classList.remove('active');
         this.elements.questionScreen.classList.remove('active');
         this.elements.resultsScreen.classList.remove('active');
         this.elements.errorScreen.classList.remove('active');
@@ -62,6 +181,9 @@ var UI = {
         switch (screenName) {
             case 'welcome':
                 this.elements.welcomeScreen.classList.add('active');
+                break;
+            case 'import-confirm':
+                this.elements.importConfirmScreen.classList.add('active');
                 break;
             case 'question':
                 this.elements.questionScreen.classList.add('active');
@@ -78,6 +200,11 @@ var UI = {
     showError(message) {
         this.elements.errorMessage.textContent = message;
         this.showScreen('error');
+    },
+
+    showImportConfirm(message) {
+        this.elements.importConfirmMessage.textContent = message;
+        this.showScreen('import-confirm');
     },
 
     showQuestion(question, questionNumber, totalQuestions) {
@@ -97,9 +224,9 @@ var UI = {
         this.renderOptions(question.options);
         this.hideFeedback();
         this.enableAnswerButton();
-        this.hideAnswerButton();
-        this.hideNextButton();
+        this.disableNextButton();
         this.enableOptions();
+        this.selectedOptionIndex = -1;
 
         this.showScreen('question');
     },
@@ -121,14 +248,6 @@ var UI = {
         return selected ? selected.value : null;
     },
 
-    showAnswerButton() {
-        this.elements.answerButton.style.display = 'inline-block';
-    },
-
-    hideAnswerButton() {
-        this.elements.answerButton.style.display = 'none';
-    },
-
     enableAnswerButton() {
         this.elements.answerButton.disabled = false;
     },
@@ -137,12 +256,12 @@ var UI = {
         this.elements.answerButton.disabled = true;
     },
 
-    showNextButton() {
-        this.elements.nextButton.style.display = 'inline-block';
+    enableNextButton() {
+        this.elements.nextButton.disabled = false;
     },
 
-    hideNextButton() {
-        this.elements.nextButton.style.display = 'none';
+    disableNextButton() {
+        this.elements.nextButton.disabled = true;
     },
 
     showFeedback(isCorrect) {
@@ -181,13 +300,14 @@ var UI = {
 
     highlightSelectedOption(optionId) {
         var options = this.elements.optionsContainer.querySelectorAll('.option');
-        options.forEach(function(option) {
+        options.forEach(function(option, index) {
             option.classList.remove('selected');
             var radio = option.querySelector('input[type="radio"]');
             if (radio && radio.value === optionId) {
                 option.classList.add('selected');
+                this.selectedOptionIndex = index;
             }
-        });
+        }.bind(this));
     },
 
     showResults(total, correct, incorrect, percentage) {
@@ -203,6 +323,28 @@ var UI = {
         this.elements.startButton.addEventListener('click', callback);
     },
 
+    onImport(callback) {
+        this.elements.importButton.addEventListener('click', function() {
+            this.elements.fileInput.click();
+        }.bind(this));
+
+        this.elements.fileInput.addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            if (file) {
+                callback(file);
+            }
+            event.target.value = '';
+        });
+    },
+
+    onStartImported(callback) {
+        this.elements.startImportedButton.addEventListener('click', callback);
+    },
+
+    onCancelImport(callback) {
+        this.elements.cancelImportButton.addEventListener('click', callback);
+    },
+
     onAnswer(callback) {
         this.elements.answerButton.addEventListener('click', callback);
     },
@@ -211,12 +353,20 @@ var UI = {
         this.elements.nextButton.addEventListener('click', callback);
     },
 
+    onAbort(callback) {
+        this.elements.abortButton.addEventListener('click', callback);
+    },
+
     onRestart(callback) {
         this.elements.restartButton.addEventListener('click', callback);
     },
 
-    onRetry(callback) {
-        this.elements.retryButton.addEventListener('click', callback);
+    onExport(callback) {
+        this.elements.exportButton.addEventListener('click', callback);
+    },
+
+    onErrorHome(callback) {
+        this.elements.errorHomeButton.addEventListener('click', callback);
     },
 
     onOptionSelect(callback) {

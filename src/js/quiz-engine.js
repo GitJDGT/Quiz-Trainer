@@ -11,6 +11,16 @@ var QuizEngine = {
         return { success: true };
     },
 
+    initWithQuestions(questions) {
+        if (!questions || questions.length === 0) {
+            return { success: false, message: 'No se proporcionaron preguntas válidas.' };
+        }
+
+        SessionManager.init(questions);
+        
+        return { success: true };
+    },
+
     getCurrentQuestion() {
         return SessionManager.getCurrentQuestion();
     },

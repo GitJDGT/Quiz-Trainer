@@ -4,9 +4,9 @@
 
 Quiz Trainer - a lightweight web application for practicing multiple-choice questions.
 
-**Status**: MVP Completed (Version 1.0)
+**Status**: Release 1.2 Completed
 
-**Next Phase**: Release 1.1 - Import/Export Question Banks
+**GitHub Pages**: https://gitjdgt.github.io/Quiz-Trainer/
 
 ## Key Constraints
 
@@ -24,16 +24,17 @@ Quiz Trainer - a lightweight web application for practicing multiple-choice ques
 ├── docs/
 ├── specs/
 │   ├── releases/              # Release specifications
-│   │   └── RELEASE-1.1.md     # Current release
+│   │   ├── RELEASE-1.1.md    # Import/Export (Completed)
+│   │   └── RELEASE-1.2.md    # GitHub Pages (Completed)
 │   ├── 013-product-backlog.md # Product backlog
 │   └── ...                    # Original specifications
 ├── src/
 │   ├── css/
-│   ├── js/
-│   └── components/
+│   └── js/
 ├── index.html
 ├── README.md
-└── LICENSE
+├── LICENSE
+└── 404.html
 ```
 
 ## Critical Rules

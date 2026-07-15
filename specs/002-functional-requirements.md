@@ -4,6 +4,8 @@
 
 El sistema deberá permitir iniciar una nueva sesión de práctica utilizando todas las preguntas disponibles en el banco de preguntas.
 
+La sesión se iniciará cuando el usuario haga clic en el botón "Comenzar" desde la pantalla de bienvenida.
+
 ---
 
 ## FR-002 - Orden aleatorio de las preguntas
@@ -11,6 +13,8 @@ El sistema deberá permitir iniciar una nueva sesión de práctica utilizando to
 Cada nueva sesión deberá presentar las preguntas en un orden aleatorio.
 
 No deberá existir una secuencia fija entre diferentes sesiones.
+
+La aleatorización del orden de las opciones de respuesta no formará parte del MVP.
 
 ---
 
@@ -90,6 +94,8 @@ El sistema deberá cargar todas las preguntas desde una fuente de datos externa 
 
 La modificación del banco de preguntas no deberá requerir cambios en la lógica del sistema.
 
+El MVP únicamente deberá soportar un único banco de preguntas.
+
 ---
 
 ## FR-013 - Navegación controlada
@@ -97,3 +103,27 @@ La modificación del banco de preguntas no deberá requerir cambios en la lógic
 Una vez enviada una respuesta, el usuario no podrá modificarla.
 
 La única acción disponible será continuar con la siguiente pregunta.
+
+---
+
+## FR-014 - Validación del banco de preguntas
+
+Al cargar el banco de preguntas, el sistema deberá validar que el archivo:
+
+- Exista y sea accesible.
+- Tenga un formato JSON válido.
+- Contenga la estructura requerida según el modelo de datos.
+
+Los campos opcionales (image, category) podrán omitirse sin causar errores de validación.
+
+Si la validación falla, el sistema deberá mostrar un mensaje de error descriptivo sin finalizar inesperadamente.
+
+---
+
+## FR-015 - Manejo de errores de carga
+
+Si el banco de preguntas no puede cargarse correctamente, el sistema deberá:
+
+- Mostrar un mensaje de error claro al usuario.
+- Permitir reintentar la carga.
+- No iniciar una sesión de práctica con datos incompletos o inválidos.

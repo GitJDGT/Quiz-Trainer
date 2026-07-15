@@ -9,7 +9,7 @@ Inicio
 Pantalla de bienvenida
     │
     ▼
-El usuario inicia una nueva sesión
+El usuario hace clic en "Comenzar"
     │
     ▼
 El sistema prepara el banco de preguntas

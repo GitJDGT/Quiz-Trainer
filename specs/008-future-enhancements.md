@@ -12,6 +12,8 @@ Sin embargo, la arquitectura del Quiz Engine deberá facilitar su incorporación
 
 Permitir un modo de estudio donde el usuario pueda visualizar la explicación de cada respuesta al finalizar una pregunta.
 
+Nota: Esta funcionalidad requerirá agregar un campo `explanation` al modelo de datos.
+
 ---
 
 ## FE-002 - Exam Mode
@@ -120,7 +122,7 @@ La revisión podrá mostrar:
 
 - Respuesta seleccionada por el usuario.
 - Respuesta correcta.
-- Explicación asociada.
+- Explicación asociada (requiere campo `explanation` en el modelo de datos).
 - Estado de la respuesta (Correcta o Incorrecta).
 
 ---

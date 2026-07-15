@@ -8,7 +8,7 @@ La aplicación deberá funcionar completamente sin conexión a Internet una vez 
 
 ## NFR-002 - Performance
 
-La carga inicial del banco de preguntas deberá realizarse una única vez al iniciar la sesión.
+La carga inicial del banco de preguntas deberá realizarse una única vez cuando el usuario haga clic en "Comenzar".
 
 La navegación entre preguntas deberá ser inmediata para el usuario.
 

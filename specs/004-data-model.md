@@ -20,7 +20,6 @@ Cada pregunta deberá contener la siguiente información:
 | options | Lista de opciones de respuesta | Sí |
 | correctAnswer | Identificador de la opción correcta | Sí |
 | category | Categoría o tema de la pregunta | No |
-| explanation | Explicación de la respuesta | No |
 
 ---
 
@@ -75,6 +74,12 @@ La imagen es opcional.
 
 Si una pregunta no posee imagen, el sistema deberá mostrar únicamente el enunciado y las opciones.
 
+### Restricciones de imagen
+
+- Tamaño máximo: 1920x1080 píxeles.
+- Peso máximo: 20 MB.
+- Formatos soportados: JPEG, PNG, WebP.
+
 ---
 
 ## Independencia
@@ -94,11 +99,3 @@ Con el fin de facilitar futuras versiones del sistema, una pregunta podrá inclu
 Permite clasificar una pregunta dentro de un tema o grupo específico.
 
 Este campo no será utilizado en la versión inicial.
-
----
-
-## Explanation
-
-Permite almacenar una explicación asociada a la respuesta correcta.
-
-Este campo no será utilizado en la versión inicial y permanecerá oculto para el usuario durante toda la sesión de práctica.

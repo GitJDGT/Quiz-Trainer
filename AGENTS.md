@@ -2,7 +2,11 @@
 
 ## Project Overview
 
-Quiz Trainer - a lightweight web application for practicing multiple-choice questions. Currently in specification phase with no code implemented.
+Quiz Trainer - a lightweight web application for practicing multiple-choice questions.
+
+**Status**: Release 1.2 Completed
+
+**GitHub Pages**: https://gitjdgt.github.io/Quiz-Trainer/
 
 ## Key Constraints
 
@@ -11,21 +15,26 @@ Quiz Trainer - a lightweight web application for practicing multiple-choice ques
 - **Dependencies**: Minimize external libraries; prefer browser-native APIs (PS-013, PS-014)
 - **Architecture**: Strict separation of concerns - UI, Quiz Engine, Question Repository, Session Manager, Result Processor
 
-## Repository Structure (Planned)
+## Repository Structure
 
 ```
 /
 ├── assets/question-banks/<bank>/images/
 ├── data/<bank>.json
 ├── docs/
-├── specs/           # All specifications (Spanish)
+├── specs/
+│   ├── releases/              # Release specifications
+│   │   ├── RELEASE-1.1.md    # Import/Export (Completed)
+│   │   └── RELEASE-1.2.md    # GitHub Pages (Completed)
+│   ├── 013-product-backlog.md # Product backlog
+│   └── ...                    # Original specifications
 ├── src/
 │   ├── css/
-│   ├── js/
-│   └── components/
+│   └── js/
 ├── index.html
 ├── README.md
-└── LICENSE
+├── LICENSE
+└── 404.html
 ```
 
 ## Critical Rules
@@ -38,7 +47,9 @@ Quiz Trainer - a lightweight web application for practicing multiple-choice ques
 
 ## Development Approach
 
-- **Specification-Driven**: Follow incremental roadmap in specs/011-development-roadmap.md
+- **Specification-Driven**: Follow incremental roadmap in specs/011-development-roadmap.md (MVP completed)
+- **Release-Based**: New features are planned in specs/releases/ folder
+- **Product Backlog**: Features are defined in specs/013-product-backlog.md
 - **Verification**: Manual verification required before completion (DoD-016)
 - **No Premature Optimization**: Optimize only when demonstrated need (PS-012)
 - **Future-Proof**: Design for extensibility without over-engineering (PS-020)
@@ -49,6 +60,9 @@ Quiz Trainer - a lightweight web application for practicing multiple-choice ques
 - Never contradict specification documents (DoD-014)
 - If implementation requires spec change, update spec first (DoD-014)
 - Each increment must be fully complete before starting next (development roadmap)
+- New features are defined in specs/013-product-backlog.md
+- Releases are planned in specs/releases/ folder
+- Original roadmap (specs/011-development-roadmap.md) is preserved as historical reference
 
 ## Code Quality
 
@@ -56,3 +70,8 @@ Quiz Trainer - a lightweight web application for practicing multiple-choice ques
 - No dead code or unused files (DoD-008)
 - Document public functions and main modules (PS-007)
 - Handle errors gracefully without unexpected crashes (PS-008)
+
+## Skills
+
+- **prepare-next-increment**: Used for MVP development increments (completed)
+- **prepare-next-release**: Used for planning product releases (active)

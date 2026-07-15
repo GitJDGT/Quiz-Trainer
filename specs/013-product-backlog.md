@@ -12,11 +12,21 @@ Las funcionalidades se organizan por releases con versionado semántico (1.1, 1.
 
 ## Release 1.1 - Import/Export
 
-**Estado**: In Progress
+**Estado**: Completed
 
 | ID | Feature | Descripción | Prioridad |
 |----|---------|-------------|-----------|
 | FE-010 | Import / Export Question Banks | Permitir importar y exportar bancos de preguntas utilizando formatos estándar | Alta |
+
+---
+
+## Release 1.2 - GitHub Pages Deployment
+
+**Estado**: Planning
+
+| ID | Feature | Descripción | Prioridad |
+|----|---------|-------------|-----------|
+| FE-021 | GitHub Pages Deployment | Preparar el proyecto para desplegarse en GitHub Pages, permitiendo acceso vía URL sin instalación | Alta |
 
 ---
 
@@ -58,4 +68,5 @@ El archivo `specs/008-future-enhancements.md` contiene la lista original de mejo
 
 - Las funcionalidades FE-001 a FE-020 corresponden al archivo original `008-future-enhancements.md`
 - Las funcionalidades FE-001 y FE-017 requieren agregar campo `explanation` al modelo de datos (definido en specs/004-data-model.md)
+- FE-021 es una funcionalidad de despliegue que no modifica la lógica de la aplicación
 - Las releases futuras pueden incluir múltiples funcionalidades según prioridades del producto

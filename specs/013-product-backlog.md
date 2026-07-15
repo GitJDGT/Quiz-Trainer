@@ -22,7 +22,7 @@ Las funcionalidades se organizan por releases con versionado semántico (1.1, 1.
 
 ## Release 1.2 - GitHub Pages Deployment
 
-**Estado**: Planning
+**Estado**: Completed
 
 | ID | Feature | Descripción | Prioridad |
 |----|---------|-------------|-----------|

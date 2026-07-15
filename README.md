@@ -20,7 +20,7 @@ Quiz Trainer es una aplicación diseñada para el estudio y repaso de exámenes.
 
 ## Acceso
 
-**En línea:** [URL de GitHub Pages]
+**En línea:** https://gitjdgt.github.io/Quiz-Trainer/
 
 **Local:** Descarga el repositorio y abre `index.html` en tu navegador.
 

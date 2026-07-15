@@ -340,8 +340,7 @@ body {
 }
 
 .option:focus-within {
-    outline: 3px solid #e94560;
-    outline-offset: 2px;
+    outline: none;
 }
 
 .option.selected {
@@ -357,6 +356,7 @@ body {
     cursor: pointer;
     accent-color: #e94560;
     flex-shrink: 0;
+    outline: none;
 }
 
 .option label {
